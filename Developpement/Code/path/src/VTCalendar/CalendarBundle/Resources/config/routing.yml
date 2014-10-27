@@ -1,3 +1,7 @@
+calendar_loginpage:
+    path:     /login
+    defaults: { _controller: CalendarBundle:Login:login }
+
 calendar_homepage:
-    path:     /hello
-    defaults: { _controller: CalendarBundle:Default:index }
+    path:     /accueil
+    defaults: { _controller: CalendarBundle:Index:index }
