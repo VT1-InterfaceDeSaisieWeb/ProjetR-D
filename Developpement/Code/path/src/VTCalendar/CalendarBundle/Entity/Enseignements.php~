@@ -1,0 +1,207 @@
+<?php
+
+namespace VTCalendar\CalendarBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Enseignements
+ *
+ * @ORM\Table(name="enseignements", indexes={@ORM\Index(name="IDX_ens_del", columns={"deleted"}), @ORM\Index(name="IDX_ens_prop", columns={"codeProprietaire"}), @ORM\Index(name="IDX_ens_dateModif", columns={"dateModif"})})
+ * @ORM\Entity
+ */
+class Enseignements
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeEnseignement", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $codeenseignement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=150, nullable=false)
+     */
+    private $nom = 'ENS?';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeMatiere", type="integer", nullable=false)
+     */
+    private $codematiere = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dureeTotale", type="integer", nullable=false)
+     */
+    private $dureetotale = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dureeSeance", type="integer", nullable=false)
+     */
+    private $dureeseance = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="couleurFond", type="integer", nullable=false)
+     */
+    private $couleurfond = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="couleurPolice", type="integer", nullable=false)
+     */
+    private $couleurpolice = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alias", type="string", length=50, nullable=false)
+     */
+    private $alias = 'ENS?';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeTypeSalle", type="integer", nullable=false)
+     */
+    private $codetypesalle = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeZoneSalle", type="integer", nullable=false)
+     */
+    private $codezonesalle = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbSeancesHebdo", type="integer", nullable=false)
+     */
+    private $nbseanceshebdo = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateModif", type="datetime", nullable=false)
+     */
+    private $datemodif = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreation", type="datetime", nullable=false)
+     */
+    private $datecreation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="deleted", type="boolean", nullable=false)
+     */
+    private $deleted = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeProprietaire", type="integer", nullable=false)
+     */
+    private $codeproprietaire = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="commentaire", type="string", length=150, nullable=false)
+     */
+    private $commentaire;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="identifiant", type="string", length=50, nullable=false)
+     */
+    private $identifiant;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="typePublic", type="boolean", nullable=false)
+     */
+    private $typepublic = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="forfaitaire", type="boolean", nullable=false)
+     */
+    private $forfaitaire = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dureeForfaitaire", type="integer", nullable=false)
+     */
+    private $dureeforfaitaire = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="volumeReparti", type="integer", nullable=false)
+     */
+    private $volumereparti = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeTypeActivite", type="integer", nullable=false)
+     */
+    private $codetypeactivite = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeComposante", type="integer", nullable=false)
+     */
+    private $codecomposante = '-1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeNiveau", type="integer", nullable=false)
+     */
+    private $codeniveau;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateDebut", type="date", nullable=false)
+     */
+    private $datedebut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateFin", type="date", nullable=false)
+     */
+    private $datefin;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="article6", type="boolean", nullable=false)
+     */
+    private $article6 = '0';
+
+
+}

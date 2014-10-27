@@ -1,0 +1,109 @@
+<?php
+
+namespace VTCalendar\CalendarBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Seances
+ *
+ * @ORM\Table(name="seances", indexes={@ORM\Index(name="IDX_plan_codeEns", columns={"codeEnseignement"}), @ORM\Index(name="IDX_plan_date", columns={"dateSeance"}), @ORM\Index(name="IDX_plan_del", columns={"deleted"}), @ORM\Index(name="IDX_plan_prop", columns={"codeProprietaire"}), @ORM\Index(name="IDX_plan_dateModif", columns={"dateModif"})})
+ * @ORM\Entity
+ */
+class Seances
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeSeance", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $codeseance;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateSeance", type="date", nullable=false)
+     */
+    private $dateseance = '0000-00-00';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="heureSeance", type="integer", nullable=false)
+     */
+    private $heureseance = '800';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dureeSeance", type="integer", nullable=false)
+     */
+    private $dureeseance = '100';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeEnseignement", type="integer", nullable=false)
+     */
+    private $codeenseignement = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateModif", type="datetime", nullable=false)
+     */
+    private $datemodif = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreation", type="datetime", nullable=false)
+     */
+    private $datecreation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="deleted", type="boolean", nullable=false)
+     */
+    private $deleted = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeProprietaire", type="integer", nullable=false)
+     */
+    private $codeproprietaire = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="commentaire", type="string", length=200, nullable=false)
+     */
+    private $commentaire = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="bloquee", type="boolean", nullable=false)
+     */
+    private $bloquee = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="diffusable", type="boolean", nullable=false)
+     */
+    private $diffusable = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="annulee", type="boolean", nullable=false)
+     */
+    private $annulee = '0';
+
+
+}

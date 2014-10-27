@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="LoginProf" table="login_prof">
+    <id name="codeprof" type="integer" column="codeProf">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="login" type="string" column="login" length="60" nullable="true"/>
+    <field name="motpasse" type="string" column="motPasse" length="60" nullable="true"/>
+    <field name="horizontal" type="integer" column="horizontal" nullable="true"/>
+    <field name="selecgroupe" type="string" column="selecGroupe" length="60" nullable="true"/>
+    <field name="selecprof" type="string" column="selecProf" length="60" nullable="true"/>
+    <field name="selecsalle" type="string" column="selecSalle" length="60" nullable="true"/>
+    <field name="selecmateriel" type="string" column="selecMateriel" length="60" nullable="true"/>
+    <field name="weekend" type="integer" column="weekend" nullable="true"/>
+    <field name="couleurGroupe" type="integer" column="couleur_groupe" nullable="true"/>
+    <field name="couleurProf" type="integer" column="couleur_prof" nullable="true"/>
+    <field name="couleurSalle" type="integer" column="couleur_salle" nullable="true"/>
+    <field name="couleurMateriel" type="integer" column="couleur_materiel" nullable="true"/>
+    <field name="heuredebut" type="float" column="heureDebut" precision="10" scale="0" nullable="true"/>
+    <field name="heurefin" type="float" column="heureFin" precision="10" scale="0" nullable="true"/>
+    <field name="bouton1debut" type="float" column="bouton1Debut" precision="10" scale="0" nullable="true"/>
+    <field name="bouton1fin" type="float" column="bouton1Fin" precision="10" scale="0" nullable="true"/>
+    <field name="bouton2debut" type="float" column="bouton2Debut" precision="10" scale="0" nullable="true"/>
+    <field name="bouton2fin" type="float" column="bouton2Fin" precision="10" scale="0" nullable="true"/>
+    <field name="bouton3debut" type="float" column="bouton3Debut" precision="10" scale="0" nullable="true"/>
+    <field name="bouton3fin" type="float" column="bouton3Fin" precision="10" scale="0" nullable="true"/>
+    <field name="bouton4debut" type="float" column="bouton4Debut" precision="10" scale="0" nullable="true"/>
+    <field name="bouton4fin" type="float" column="bouton4Fin" precision="10" scale="0" nullable="true"/>
+    <field name="reservation" type="integer" column="reservation" nullable="true"/>
+    <field name="module" type="integer" column="module" nullable="true"/>
+    <field name="bilanHeure" type="integer" column="bilan_heure" nullable="true"/>
+    <field name="configuration" type="integer" column="configuration" nullable="true"/>
+    <field name="rss" type="integer" column="rss" nullable="true"/>
+    <field name="bilanHeureGlobal" type="integer" column="bilan_heure_global" nullable="true"/>
+    <field name="bilanFormation" type="integer" column="bilan_formation" nullable="true"/>
+    <field name="pdf" type="integer" column="pdf" nullable="true"/>
+    <field name="seanceClicable" type="integer" column="seance_clicable" nullable="true"/>
+    <field name="giseh" type="integer" column="giseh" nullable="true"/>
+    <field name="salle" type="integer" column="salle" nullable="true"/>
+    <field name="mesDroits" type="integer" column="mes_droits" nullable="true"/>
+    <field name="admin" type="integer" column="admin" nullable="true"/>
+    <field name="dialogue" type="integer" column="dialogue" nullable="true"/>
+  </entity>
+</doctrine-mapping>

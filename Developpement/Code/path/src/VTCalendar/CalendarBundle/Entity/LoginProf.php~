@@ -1,0 +1,277 @@
+<?php
+
+namespace VTCalendar\CalendarBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * LoginProf
+ *
+ * @ORM\Table(name="login_prof")
+ * @ORM\Entity
+ */
+class LoginProf
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeProf", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $codeprof;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="login", type="string", length=60, nullable=true)
+     */
+    private $login;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="motPasse", type="string", length=60, nullable=true)
+     */
+    private $motpasse;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="horizontal", type="integer", nullable=true)
+     */
+    private $horizontal = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="selecGroupe", type="string", length=60, nullable=true)
+     */
+    private $selecgroupe;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="selecProf", type="string", length=60, nullable=true)
+     */
+    private $selecprof;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="selecSalle", type="string", length=60, nullable=true)
+     */
+    private $selecsalle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="selecMateriel", type="string", length=60, nullable=true)
+     */
+    private $selecmateriel;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="weekend", type="integer", nullable=true)
+     */
+    private $weekend = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="couleur_groupe", type="integer", nullable=true)
+     */
+    private $couleurGroupe = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="couleur_prof", type="integer", nullable=true)
+     */
+    private $couleurProf = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="couleur_salle", type="integer", nullable=true)
+     */
+    private $couleurSalle = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="couleur_materiel", type="integer", nullable=true)
+     */
+    private $couleurMateriel = '0';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="heureDebut", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $heuredebut = '0';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="heureFin", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $heurefin = '0';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="bouton1Debut", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $bouton1debut = '8';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="bouton1Fin", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $bouton1fin = '10';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="bouton2Debut", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $bouton2debut = '10';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="bouton2Fin", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $bouton2fin = '12';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="bouton3Debut", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $bouton3debut = '14';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="bouton3Fin", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $bouton3fin = '16';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="bouton4Debut", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $bouton4debut = '16';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="bouton4Fin", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $bouton4fin = '18';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="reservation", type="integer", nullable=true)
+     */
+    private $reservation = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="module", type="integer", nullable=true)
+     */
+    private $module = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bilan_heure", type="integer", nullable=true)
+     */
+    private $bilanHeure = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="configuration", type="integer", nullable=true)
+     */
+    private $configuration = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="rss", type="integer", nullable=true)
+     */
+    private $rss = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bilan_heure_global", type="integer", nullable=true)
+     */
+    private $bilanHeureGlobal = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bilan_formation", type="integer", nullable=true)
+     */
+    private $bilanFormation = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pdf", type="integer", nullable=true)
+     */
+    private $pdf = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="seance_clicable", type="integer", nullable=true)
+     */
+    private $seanceClicable = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="giseh", type="integer", nullable=true)
+     */
+    private $giseh = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="salle", type="integer", nullable=true)
+     */
+    private $salle = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="mes_droits", type="integer", nullable=true)
+     */
+    private $mesDroits = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="admin", type="integer", nullable=true)
+     */
+    private $admin = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dialogue", type="integer", nullable=true)
+     */
+    private $dialogue = '0';
+
+
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Enseignements" table="enseignements">
+    <indexes>
+      <index name="IDX_ens_del" columns="deleted"/>
+      <index name="IDX_ens_prop" columns="codeProprietaire"/>
+      <index name="IDX_ens_dateModif" columns="dateModif"/>
+    </indexes>
+    <id name="codeenseignement" type="integer" column="codeEnseignement">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nom" type="string" column="nom" length="150" nullable="false"/>
+    <field name="codematiere" type="integer" column="codeMatiere" nullable="false"/>
+    <field name="dureetotale" type="integer" column="dureeTotale" nullable="false"/>
+    <field name="dureeseance" type="integer" column="dureeSeance" nullable="false"/>
+    <field name="couleurfond" type="integer" column="couleurFond" nullable="false"/>
+    <field name="couleurpolice" type="integer" column="couleurPolice" nullable="false"/>
+    <field name="alias" type="string" column="alias" length="50" nullable="false"/>
+    <field name="codetypesalle" type="integer" column="codeTypeSalle" nullable="false"/>
+    <field name="codezonesalle" type="integer" column="codeZoneSalle" nullable="false"/>
+    <field name="nbseanceshebdo" type="integer" column="nbSeancesHebdo" nullable="false"/>
+    <field name="datemodif" type="datetime" column="dateModif" nullable="false"/>
+    <field name="datecreation" type="datetime" column="dateCreation" nullable="false"/>
+    <field name="deleted" type="boolean" column="deleted" nullable="false"/>
+    <field name="codeproprietaire" type="integer" column="codeProprietaire" nullable="false"/>
+    <field name="commentaire" type="string" column="commentaire" length="150" nullable="false"/>
+    <field name="identifiant" type="string" column="identifiant" length="50" nullable="false"/>
+    <field name="typepublic" type="boolean" column="typePublic" nullable="false"/>
+    <field name="forfaitaire" type="boolean" column="forfaitaire" nullable="false"/>
+    <field name="dureeforfaitaire" type="integer" column="dureeForfaitaire" nullable="false"/>
+    <field name="volumereparti" type="integer" column="volumeReparti" nullable="false"/>
+    <field name="codetypeactivite" type="integer" column="codeTypeActivite" nullable="false"/>
+    <field name="codecomposante" type="integer" column="codeComposante" nullable="false"/>
+    <field name="codeniveau" type="integer" column="codeNiveau" nullable="false"/>
+    <field name="datedebut" type="date" column="dateDebut" nullable="false"/>
+    <field name="datefin" type="date" column="dateFin" nullable="false"/>
+    <field name="article6" type="boolean" column="article6" nullable="false"/>
+  </entity>
+</doctrine-mapping>

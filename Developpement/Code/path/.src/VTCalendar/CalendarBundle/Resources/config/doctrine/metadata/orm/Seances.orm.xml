@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Seances" table="seances">
+    <indexes>
+      <index name="IDX_plan_codeEns" columns="codeEnseignement"/>
+      <index name="IDX_plan_date" columns="dateSeance"/>
+      <index name="IDX_plan_del" columns="deleted"/>
+      <index name="IDX_plan_prop" columns="codeProprietaire"/>
+      <index name="IDX_plan_dateModif" columns="dateModif"/>
+    </indexes>
+    <id name="codeseance" type="integer" column="codeSeance">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="dateseance" type="date" column="dateSeance" nullable="false"/>
+    <field name="heureseance" type="integer" column="heureSeance" nullable="false"/>
+    <field name="dureeseance" type="integer" column="dureeSeance" nullable="false"/>
+    <field name="codeenseignement" type="integer" column="codeEnseignement" nullable="false"/>
+    <field name="datemodif" type="datetime" column="dateModif" nullable="false"/>
+    <field name="datecreation" type="datetime" column="dateCreation" nullable="false"/>
+    <field name="deleted" type="boolean" column="deleted" nullable="false"/>
+    <field name="codeproprietaire" type="integer" column="codeProprietaire" nullable="false"/>
+    <field name="commentaire" type="string" column="commentaire" length="200" nullable="false"/>
+    <field name="bloquee" type="boolean" column="bloquee" nullable="false"/>
+    <field name="diffusable" type="boolean" column="diffusable" nullable="false"/>
+    <field name="annulee" type="boolean" column="annulee" nullable="false"/>
+  </entity>
+</doctrine-mapping>

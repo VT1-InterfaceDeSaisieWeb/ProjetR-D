@@ -1,0 +1,109 @@
+<?php
+
+namespace VTCalendar\CalendarBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Matieres
+ *
+ * @ORM\Table(name="matieres", indexes={@ORM\Index(name="IDX_matiere_del", columns={"deleted"}), @ORM\Index(name="IDX_matiere_prop", columns={"codeProprietaire"}), @ORM\Index(name="IDX_matiere_dateModif", columns={"dateModif"})})
+ * @ORM\Entity
+ */
+class Matieres
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeMatiere", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $codematiere;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="couleurFond", type="bigint", nullable=false)
+     */
+    private $couleurfond = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="couleurPolice", type="bigint", nullable=false)
+     */
+    private $couleurpolice = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
+     */
+    private $nom = 'MATIERE?';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer", nullable=false)
+     */
+    private $type = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeCNU", type="integer", nullable=false)
+     */
+    private $codecnu = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alias", type="string", length=50, nullable=false)
+     */
+    private $alias = 'MATIERE?';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateModif", type="datetime", nullable=false)
+     */
+    private $datemodif = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreation", type="datetime", nullable=false)
+     */
+    private $datecreation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="deleted", type="boolean", nullable=false)
+     */
+    private $deleted = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="codeProprietaire", type="bigint", nullable=false)
+     */
+    private $codeproprietaire = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="commentaire", type="string", length=150, nullable=false)
+     */
+    private $commentaire;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="identifiant", type="string", length=50, nullable=false)
+     */
+    private $identifiant;
+
+
+}
