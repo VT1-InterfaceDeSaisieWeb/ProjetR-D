@@ -4,7 +4,12 @@
 /* ---------- GENERAL ---------- */
 
 body {
-	background: #eaeaea;
+	//background: #eaeaea;
+        background: url("../images/blurred1.jpg") no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
 	color: #999;
 	font: 100%/1.5em sans-serif;
 	margin: 0;

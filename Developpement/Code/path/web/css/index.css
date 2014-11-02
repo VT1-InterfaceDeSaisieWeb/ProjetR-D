@@ -11,12 +11,21 @@
 
 body{
 	overflow-y:hidden;
-        background-color: #eaeaea;
+        //background-color: #eaeaea;
+        background: url("../images/blurred1.jpg") no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
 }
 
 h1 {
   padding-top: 5px!important;
   margin-top: 0px!important;
+}
+
+span{
+    opacity: 1!important;
 }
 nav ul {
 	/*max-width: 350px;*/
@@ -29,6 +38,7 @@ nav ul {
 	font-size: 1.5em;
 	font-weight: 300;
 	position: absolute;
+        opacity: 0.5;
 }
 
 .nav li span {
