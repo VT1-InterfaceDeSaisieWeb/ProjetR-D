@@ -6,10 +6,6 @@
 	<title>Page de connexion VT</title>
 	<link rel="stylesheet" href="../css/login.css" />
 
-	<!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
 </head>
 
 <body>
@@ -22,36 +18,22 @@
 
         <fieldset>
 
-            <form action="javascript:void(0);" method="get">
+            <form action="{{path('calendar_login_page')}}" method="POST">
 
-                <input type="email" required value="User" onBlur="if(this.value=='')this.value='Email'" onFocus="if(this.value=='Email')this.value='' "> <!-- JS because of IE support; better: placeholder="Email" -->
-              
-<input type="email" required value="Mot de passe" onBlur="if(this.value=='')this.value='Email'" onFocus="if(this.value=='Email')this.value='' ">              
-              
-              
-<!------------------------------------------->                          
-
- <!--               <input type="password" required value="Mot de passe" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' ">
-  -->
-            <!-- JS because of IE support; better: placeholder="Password" -->
-              
-<!------------------------------------------->         
-
+                <input name="mail" type="text" required="true" label="Login" value="Login" > 
+                <input name="mdp" type="password" required="true" value="Mot de passe" >                
                 <input type="submit" value="Connexion">
 
                 <footer class="clearfix">
-
                     <p><span class="info">?</span><a href="#">Mot de passe oublié</a></p>
-                  
-                 <p><span class="info">?</span><a href="#">Créer un nouveau compte</a></p>  
-
+                    <p><span class="info">?</span><a href="#">Créer un nouveau compte</a></p>  
                 </footer>
 
             </form>
 
         </fieldset>
 
-    </div> <!-- end login-form -->
+    </div>
 
 </body>
 </html>

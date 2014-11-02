@@ -1,7 +1,11 @@
-calendar_loginpage:
+calendar_login_page:
     path:     /login
     defaults: { _controller: CalendarBundle:Login:login }
 
-calendar_homepage:
+calendar_logout:
+    path:     /logout
+    defaults: { _controller: CalendarBundle:Login:logout }
+
+calendar_home_page:
     path:     /accueil
     defaults: { _controller: CalendarBundle:Index:index }

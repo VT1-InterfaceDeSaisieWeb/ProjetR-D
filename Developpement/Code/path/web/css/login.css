@@ -102,20 +102,21 @@ input[type="submit"] { cursor: pointer; }
 	font-size: 14px;
 }
 
-#login-form input[type="email"],
+#login-form input[type="text"],
 #login-form input[type="password"] {
 	border: 1px solid #dcdcdc;
 	padding: 12px 10px;
 	width: 238px;
 }
 
-#login-form input[type="email"] {
-	border-radius: 3px 3px 0 0;
+#login-form input[type="text"] {
+	border-radius: 0px 0px 3px 3px;
+        text-align: center;
 }
 
 #login-form input[type="password"] {
-	border-top: none;
 	border-radius: 0px 0px 3px 3px;
+        text-align: center;
 }
 
 #login-form input[type="submit"] {
