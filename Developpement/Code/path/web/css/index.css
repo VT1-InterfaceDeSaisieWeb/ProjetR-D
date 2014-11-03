@@ -185,9 +185,9 @@ word-wrap: break-word;
 
 
 #formulaire_matiere{
-	width: 600px;
-	height: 800px;
-	background-color: blue;
+	width: 450px;
+	height: 380px;
+	background-color: white;
 	z-index: 2000;
 	box-shadow: 0px 2px 170px black;
 	position: absolute;
@@ -197,18 +197,67 @@ word-wrap: break-word;
   	transition: all 600ms easeInBounce;
 }
 
+#formulaire_matiere ol{
+	margin-left: 40px;
+}
+
+#formulaire_matiere legend{
+	background: rgb(42,42,42);
+	color: white;
+	text-align:center;
+}
+
+#formulaire_matiere button{
+	background: #1dabb8;
+	border-radius: 3px;
+	color: #fff;
+	margin: 10px 70px;
+	font-weight: bold;
+	margin-top: 20px;
+	padding: 10px 20px;
+	margin-left: 175px;
+}
+
+#formulaire_matiere button:hover{
+	background: #198d98;
+}
+
 
 
 #formulaire_enseignement{
 	width: 600px;
-	height: 800px;
-	background-color: yellow;
+	height: 630px;
+	background-color: white;
 	z-index: 2000;
 	box-shadow: 0px 2px 170px black;
 	position: absolute;
 	margin-top: 10%;
 	margin-left: 40%;
 }
+
+#formulaire_enseignement ol{
+	margin-left: 80px;
+}
+
+#formulaire_enseignement legend{
+	background: rgb(42,42,42);
+	color: white;
+	text-align:center;
+}
+
+#formulaire_enseignement button{
+	background: #1dabb8;
+	border-radius: 3px;
+	color: #fff;
+	margin: 10px 70px;
+	font-weight: bold;
+	margin-top: 20px;
+	padding: 10px 20px;
+	margin-left: 250px;
+}
+
+#formulaire_enseignement button:hover{
+	background: #198d98;
 
 .box {
 	-webkit-animation: cssAnimation 0.5s 1 ease;

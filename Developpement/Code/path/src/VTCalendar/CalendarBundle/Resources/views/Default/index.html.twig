@@ -12,18 +12,24 @@
 		<link rel='stylesheet' type='text/css' href='../css/jquery.weekcalendar.css' />
 		<link rel='stylesheet' type='text/css' href='../css/demo.css' />
 		<link rel='stylesheet' type='text/css' href='../css/bootstrap.css' />
+		<link rel='stylesheet' type='text/css' href='../css/colorpicker.css'>
 	
 		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js'></script>
 		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js'></script>
 		<script type='text/javascript' src='../js/jquery.weekcalendar.js'></script>
 		<script type='text/javascript' src='../js/demo.js'></script>
+		<script type='text/javascript' src='../js/colorpicker.js'></script>
+		<!-- jQuery Color Picker -->
+
+
+		
 		
 		<script>
 				function listBlockVisibility(blockId1, blockId2){
 		
 					var targetBlock = document.getElementById(blockId1);
 					var tmp = document.getElementById(blockId2);
-					
+
 						if (targetBlock.style.display == "none"){
 							targetBlock.style.display = "";
 							tmp.style.display = "none";
@@ -44,7 +50,7 @@
 	</header>
 	
 	<body>
-            <div id="contain">
+       <div id="contain">
 	  		<nav id="menu" class="nav">					
 			    <ul>
 					<li onclick="listBlockVisibility('formulaire_matiere', 'formulaire_enseignement');">
@@ -60,9 +66,112 @@
 			<div id="calendar">
 			</div>
 			
+		<!-- Formulaire ajout matière -->
 	
-            </div>
-            
+	<div id="formulaire_matiere" style="display: none" class="box">
+		   
+		<fieldset>
+			<legend>Nouvelle matière</legend>
+
+			<ol>
+			  <li>
+				<label for=nom>Nom</label>
+				<input id=nom name=nom type="text" placeholder="Intitulé matière" required autofocus>
+			  </li>
+			  <li>
+				<label for=code>Code</label>
+				<input id=codem name=code type="number" placeholder="Code matière" required>
+			  </li>
+			  <li>
+				<label for="color-picker">Choix de la couleur de fond</label>
+				<input type="color" name="color-picker" id="color-picker" value="ff0000">
+			  </li>
+			  <li>
+				<label for=alias>Alias</label>
+				<input id=alias name=code type=text placeholder="Alias matière" required>
+			  </li>
+			  <li>
+				<label for="color-picker">Choix de la couleur de police</label>
+				<input type="color" name="color-picker" id="color-picker" value="ff0000">
+			  </li>
+			</ol>
+		</fieldset>
+		<fieldset>
+			<button type=submit>Valider</button>
+		</fieldset>
+	</div>
+	
+	
+	<!-- Fin formulaire ajout matière-->
+	
+	
+	
+	<!-- Formulaire ajout enseignement -->
+	
+	<div id="formulaire_enseignement" style="display: none" class="box">
+	
+		<fieldset>
+			<legend>Nouvel enseignement</legend>
+
+			<ol>
+			  <li>
+				<label for=nom>Nom de l'enseignement</label>
+				<input id=nom name=nom type="text" placeholder="Intitulé de l'enseignement" required autofocus>
+			  </li>
+			  <li>
+				<label for=codeenseignement>Code enseignement</label>
+				<input id=codeenseignement name=codeenseignement type="number" placeholder="Code de l'enseignement" required>
+			  </li>
+			  <li>
+				<label for=codematiere>Code de la matière</label>
+				<input id=codematiere name=codematiere type="number" placeholder="Code de la matière associée" required>
+			  </li>
+			  <li>
+				<label for=dureetotale>Durée de l'enseignement</label>
+				<input id=dureetotale name=dureetotale type="number" placeholder="Durée de l'enseignement" required>
+			  </li>
+			  <li>
+				<label for=dureeseance>Durée des séances</label>
+				<input id=dureeseance name=dureeseance type="number" placeholder="Durée des seances" required>
+			  </li>
+			  <li>
+				<label for="color-picker">Choix de la couleur de fond</label>
+				<input type="color" name="color-picker" id="color-picker" value="ff0000">
+			  </li>
+			  <li>
+				<label for=alias>Alias</label>
+				<input id=alias name=code type=text placeholder="Alias matière" required>
+			  </li>
+			  <li>
+				<label for="color-picker">Choix de la couleur de police</label>
+				<input type="color" name="color-picker" id="color-picker" value="ff0000">
+			  </li>
+			  <li>
+				<label for=codetypesalle>Code du type de salle</label>
+				<input id=codetypesalle name=codetypesalle type="number" placeholder="Type de salle" required>
+			  </li>
+			  <li>
+				<label for=codezonesalle>Code zone de salle</label>
+				<input id=codezonesalle name=codezonesalle type="number" placeholder="Zone de salle" required>
+			  </li>
+			  <li>
+				<label for=nbseanceshebdo>Nombre de séances par semaine</label>
+				<input id=nbseanceshebdo name=nbseanceshebdo type="number" placeholder="Nombre de séances hebdomadaire" required>
+			  </li>
+			</ol>
+		</fieldset>
+		<fieldset>
+			<button type=submit>Valider</button>
+		</fieldset>
+	
+	</div>
+	
+	<!-- Fin formulaire ajout enseignement-->
+		
+		
+		
+       </div>
+           
             
             <div id="event_edit_container">
 		<form>
@@ -86,26 +195,25 @@
 			</ul>
 		</form>
 	</div>
-
 	
-	
-	<!-- Formulaire ajout matière -->
-	
-	<div id="formulaire_matiere" style="display: none" class="box">
-
-	</div>
-	
-	<!-- Fin formulaire ajout matière-->
-	
-	
-	
-		<!-- Formulaire ajout enseignement -->
-	
-	<div id="formulaire_enseignement" style="display: none" class="box">
-	
-	</div>
-	
-	<!-- Fin formulaire ajout enseignement-->
+	 <!-- Script COLOR  -->
+  <script>
+	  var initColorpicker = function() {
+		$('input[type=color]').each(function() {
+			var $input = $(this);
+			$input.ColorPicker({
+				onSubmit: function(hsb, hex, rgb, el) {
+					$(el).val(hex);
+					$(el).ColorPickerHide();
+				}
+			});
+		});
+	};
+	 
+	if(!Modernizr.inputtypes.color){
+		$(document).ready(initColorpicker);
+	};
+  </script>
 	
 	</body>
         
