@@ -25,17 +25,28 @@
 		
 		
 		<script>
-				function listBlockVisibility(blockId1, blockId2, blockId3){
+				function listBlockVisibility(blockId1, blockId2){
 		
 					var targetBlock = document.getElementById(blockId1);
 					var tmp = document.getElementById(blockId2);
-                                        var blurred = document.getElementById(blockId3)
+                                        var blurred = document.getElementById("blurred");
 
-						if (targetBlock.style.display == "none"){
-							targetBlock.style.display = "";
-							tmp.style.display = "none";
+						if (targetBlock.style.display == "block"){
+							
+                                                        targetBlock.style.transition = "all 2s";
+                                                        targetBlock.style.opacity = "1";
+                                                        targetBlock.style.zIndex = "3000";
+                                                     
+                                                        
+                                                        tmp.style.opacity = "0";
+                                                        tmp.style.zIndex = "0";
+                                                        
+                             
+							
+                                                        
+                                                        blurred.style.transition = "all 2s";
                                                         blurred.style.backgroundColor = "black";
-                                                        blurred.style.opacity = "0.2"
+                                                        blurred.style.opacity = "0.2";
                                                         
 						}
 				}
@@ -48,27 +59,29 @@
 	</head>
 
 	<header>
-		<h1>Visual Timetabling</h1>
+            <h1>Visual Timetabling <a href="{{path('calendar_logout')}}" title="Déconnexion"><img id="logout-icon" title="Déconnexion" src="{{ asset('images/logout.png') }}" /></a></h1>
+                
 	</header>
 	
 	<body>
-            <div id="blurred" style="background-color: transparent" onclick="displayNone('formulaire_matiere', 'formulaire_enseignement', 'blurred');">
+            <div id="blurred" style="background-color: transparent" onclick="displayNone('formulaire_matiere');">
                 
                 <div id="contain">
                                  <nav id="menu" class="nav">					
                                      <ul>
-                                                 <li onclick="listBlockVisibility('formulaire_matiere', 'formulaire_enseignement', 'blurred');">
+                                                 <li class="te" onclick="listBlockVisibility('formulaire_matiere', 'formulaire_enseignement');">
                                                                  <span class="label ">Matière</span>
                                                  </li>
-                                                 <li onclick="listBlockVisibility('formulaire_enseignement', 'formulaire_matiere', 'blurred');">
+                                                 <li class="st" onclick="listBlockVisibility('formulaire_enseignement', 'formulaire_matiere');">
                                                                  <span class="label ">Enseignement</span>
                                                  </li>
                                          </ul>
                                  </nav>
 
 
-                                 <div id="calendar">
+                                 <div id="calendar" style="z-index: 1">
                                  </div>
+                   
 
                          <!-- Formulaire ajout matière -->
 
@@ -124,7 +137,7 @@ Script COLOR  -->
             </div>
             
             
-            <div id="formulaire_matiere"  class="box" style="display:none">
+            <div id="formulaire_matiere"  class="box" style="opacity: 0; display:block; z-index: 0 ">
 
                          <fieldset>
                                  <legend>Nouvelle matière</legend>
@@ -164,7 +177,7 @@ Script COLOR  -->
 
                  <!-- Formulaire ajout enseignement -->
 
-                 <div id="formulaire_enseignement"  class="box" style="display:none">
+                 <div id="formulaire_enseignement"  class="box" style="opacity: 0; display:block;  z-index: 0 ">
 
                          <fieldset>
                                  <legend>Nouvel enseignement</legend>
@@ -224,6 +237,15 @@ Script COLOR  -->
 
                  <!-- Fin formulaire ajout enseignement-->
 	</body>
+        
+        <footer>
+            <div id="footer">
+                <div id="copyright"><img id="logo_ueve" src="{{asset('images/logo_ueve.png')}}"/>Copyright © 2014 - 2015 Université d'Evry Val d'Essonne</div>
+                <div id="developers">testkhluhruhieuyuyi</div>
+                 
+                
+            </div>
+        </footer>
         
 </html>
   

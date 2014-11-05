@@ -48,6 +48,8 @@ input {
 	font-size: inherit;
 	margin: 0;
 	-webkit-appearance: none;
+        margin: 0 11px;
+
 }
 
 input:focus {
