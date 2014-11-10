@@ -22,4 +22,26 @@ class IndexController extends Controller
         }
         
     }
+    
+    
+    public function ajoutMatiereAction(Request $request)
+    {
+        if($request->getMethod() == "POST"){
+            
+            $connection = mysql_connect( "localhost", "root", "root" ) ;
+            $db  = mysql_select_db( "VT" ) ;
+            
+            $nomMatiere = $request->get('nom');
+            $dateCreation = date("Y-m-d H:i:s");
+            $codeProprietaire = 777;
+            $sql = "INSERT  INTO matieres (nom, dateCreation, codeProprietaire) VALUES ( '$nomMatiere', '$dateCreation', '$codeProprietaire')";
+            $requete = mysql_query($sql, $connection) or die( mysql_error() );
+            
+            return new RedirectResponse($this->generateUrl('calendar_home_page'));
+            
+        }
+        
+        return new RedirectResponse($this->generateUrl('calendar_home_page'));
+    }
+    
 }

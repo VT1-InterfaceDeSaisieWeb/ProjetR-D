@@ -9,3 +9,7 @@ calendar_logout:
 calendar_home_page:
     path:     /accueil
     defaults: { _controller: CalendarBundle:Index:index }
+
+calendar_ajout_matiere:
+    path:     /ajoutMatiere
+    defaults: { _controller: CalendarBundle:Index:ajoutMatiere }

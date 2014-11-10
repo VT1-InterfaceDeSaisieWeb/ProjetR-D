@@ -138,16 +138,16 @@ Script COLOR  -->
             
             
             <div id="formulaire_matiere"  class="box" style="opacity: 0; display:block; z-index: 0 ">
-
+                <form action="{{path('calendar_ajout_matiere')}}" method="POST">
                          <fieldset>
                                  <legend>Nouvelle matière</legend>
 
                                  <ol>
                                    <li>
                                        <label for=nom>Nom</label><br>
-                                         <input id=nom name=nom type="text" placeholder="Intitulé matière" required autofocus>
+                                         <input id= "nom" name= "nom" type="text" placeholder="Intitulé matière" required autofocus>
                                    </li>
-                                   <li>
+                                   <!--<li>
                                          <label for=code>Code</label><br>
                                          <input id=codem name=code type="number" placeholder="Code matière" required>
                                    </li>
@@ -162,12 +162,13 @@ Script COLOR  -->
                                    <li>
                                          <label for="color-picker">Choix de la couleur de police</label><br>
                                          <input type="color" name="color-picker" id="color-picker" value="ff0000">
-                                   </li>
+                                   </li>-->
                                  </ol>
                          </fieldset>
                          <fieldset>
                                  <button type=submit>Valider</button>
                          </fieldset>
+                    </form>
                  </div>
 
 
