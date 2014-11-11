@@ -178,7 +178,8 @@ Script COLOR  -->
 
                  <!-- Formulaire ajout enseignement -->
 
-                 <div id="formulaire_enseignement"  class="box" style="opacity: 0; display:block;  z-index: 0 ">
+                 <div id="formulaire_enseignement" class="box" style="opacity: 0; display:block;  z-index: 0 ">
+                    <form action="{{path('calendar_ajout_enseignement')}}" method="POST">
 
                          <fieldset>
                                  <legend>Nouvel enseignement</legend>
@@ -186,54 +187,75 @@ Script COLOR  -->
                                  <ol>
                                    <li>
                                          <label for=nom>Nom de l'enseignement</label><br>
-                                         <input id=nom name=nom type="text" placeholder="Intitulé de l'enseignement" required autofocus>
-                                   </li>
-                                   <li>
-                                         <label for=codeenseignement>Code enseignement</label><br>
-                                         <input id=codeenseignement name=codeenseignement type="number" placeholder="Code de l'enseignement" required>
+                                         <input id="nom" name="nom" type="text" placeholder="Intitulé" required autofocus>
+                                          <span>Entrez le nom complet de l'enseignement</span>
                                    </li>
                                    <li>
                                          <label for=codematiere>Code de la matière</label><br>
-                                         <input id=codematiere name=codematiere type="number" placeholder="Code de la matière associée" required>
+                                         <input id="codematiere" name="codematiere" type="number" placeholder="Code de la matière" required>
+                                         <span>Entrez le code de la matière associée</span>
                                    </li>
                                    <li>
                                          <label for=dureetotale>Durée de l'enseignement</label><br>
-                                         <input id=dureetotale name=dureetotale type="number" placeholder="Durée de l'enseignement" required>
+                                         <input id="dureetotale" name="dureetotale" type="number" placeholder="Durée de l'enseignement" required>
+                                         <span>Entrez la durée totale de l'enseignement</span>
                                    </li>
                                    <li>
                                          <label for=dureeseance>Durée des séances</label><br>
-                                         <input id=dureeseance name=dureeseance type="number" placeholder="Durée des seances" required>
-                                   </li>
-                                   <li>
-                                         <label for="color-picker">Choix de la couleur de fond</label><br>
-                                         <input type="color" name="color-picker" id="color-picker" value="ff0000">
+                                         <input id="dureeseance" name="dureeseance" type="number" placeholder="Durée des seances" required>
+                                        <span>Entrez la durée d'une séance</span>
                                    </li>
                                    <li>
                                          <label for=alias>Alias</label><br>
-                                         <input id=alias name=code type=text placeholder="Alias matière" required>
-                                   </li>
-                                   <li>
-                                         <label for="color-picker">Choix de la couleur de police</label><br>
-                                         <input type="color" name="color-picker" id="color-picker" value="ff0000">
+                                         <input id="alias" name="alias" type=text placeholder="Alias matière" required>
+                                         <span>Entrez l'alias de la matière associée à l'enseignement</span>
                                    </li>
                                    <li>
                                          <label for=codetypesalle>Code du type de salle</label><br>
-                                         <input id=codetypesalle name=codetypesalle type="number" placeholder="Type de salle" required>
+                                         <input id="codetypesalle" name="codetypesalle" type="number" placeholder="Type de salle" required>
+                                         <span>Type de salle où aura lieu l'enseignement</span>
                                    </li>
                                    <li>
                                          <label for=codezonesalle>Code zone de salle</label><br>
-                                         <input id=codezonesalle name=codezonesalle type="number" placeholder="Zone de salle" required>
+                                         <input id="codezonesalle" name="codezonesalle" type="number" placeholder="Zone de salle" required>
                                    </li>
                                    <li>
                                          <label for=nbseanceshebdo>Nombre de séances par semaine</label><br>
-                                         <input id=nbseanceshebdo name=nbseanceshebdo type="number" placeholder="Nombre de séances hebdomadaire" required>
+                                         <input id="nbseanceshebdo" name="nbseanceshebdo" type="number" placeholder="Nombre de séances hebdomadaire" required>
+                                         <span>Renseignez le nombre de séances hebdomadaire prévu</span>
+                                   </li>
+                                   <li>
+                                         <label for="dateDebut">Début de l'enseignement</label><br>
+                                         <input id="dateDebut" name="dateDebut" type="date" placeholder="Commence le" required>
+                                         <span>Renseignez la date de début de l'enseignement</span>
+                                   </li>
+                                   <li>
+                                         <label for="dateFin">Fin de l'enseignement</label><br>
+                                         <input id="dateFin" name="dateFin" type="date" placeholder="Se termine le" required>
+                                         <span>Renseignez la date de fin de l'enseignement</span>
+                                   </li>
+                                   <li>
+                                         <label for="identifiant">Identifiant de l'enseignement</label><br>
+                                         <input id="identifiant" name="identifiant" type="text" placeholder="Identifié par" required>
+                                         <span>Renseignez l'identifiant de l'enseignement</span>
+                                   </li>
+                                   <li>
+                                         <label for="codeNiveau">Code niveau de l'enseignement</label><br>
+                                         <input id="codeNiveau" name="codeNiveau" type="number" placeholder="Niveau" required>
+                                         <span>Renseignez le code du niveau de l'enseignement</span>
+                                   </li>
+                                   <li>
+                                         <label for="commentaires">Commentaires</label><br>
+                                         <TEXTAREA name="commentaires" rows="10" cols="30" required></TEXTAREA>
+                                         <span>Commentaires sur l'enseignement à ajouter</span>
                                    </li>
                                  </ol>
                          </fieldset>
                          <fieldset>
-                                 <button type=submit>Valider</button>
+                                 <button type="submit">Valider</button>
                          </fieldset>
 
+                      </form>
                  </div>
 
                  <!-- Fin formulaire ajout enseignement-->

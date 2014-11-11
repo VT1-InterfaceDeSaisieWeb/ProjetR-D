@@ -293,6 +293,59 @@ word-wrap: break-word;
 
 #formulaire_enseignement button:hover{
 	background: #198d98;
+}
+
+	#formulaire_enseignement input  + span{
+		display: none;
+	}
+	
+	#formulaire_enseignement textarea  + span{
+		display: none;
+	}
+
+	#formulaire_enseignement input:required{
+		background:url(required.gif) 98% center no-repeat;
+	}
+	
+#formulaire_enseignement textarea:required{
+	background:url(required.gif) 98% center no-repeat;
+}
+
+	#formulaire_enseignement input:focus:invalid{
+		border-color:#FF0000;
+		background-image:none;
+	}
+	
+#formulaire_enseignement textarea:focus:invalid{
+		border-color:#FF0000;
+		background-image:none;
+	}
+
+	#formulaire_enseignement input:focus:invalid + span{
+		display: block;
+		color: #FF0000;
+	}
+
+#formulaire_enseignement textarea:focus:invalid + span{
+	display: block;
+	color: #FF0000;
+}
+
+	#formulaire_enseignement input:focus:valid{
+		border-color:#54c93f;
+	}
+
+	#formulaire_enseignement input:valid{
+		background-image:none;
+	}
+
+		#formulaire_enseignement textarea:focus:valid{
+		border-color:#54c93f;
+	}
+
+	#formulaire_enseignement textarea:valid{
+		background-image:none;
+	}
 
 .box {
 	-webkit-animation: cssAnimation 0.5s 1 ease;
