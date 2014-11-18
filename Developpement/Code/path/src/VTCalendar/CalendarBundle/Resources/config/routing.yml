@@ -13,3 +13,7 @@ calendar_home_page:
 calendar_ajout_matiere:
     path:     /ajoutMatiere
     defaults: { _controller: CalendarBundle:Index:ajoutMatiere }
+
+calendar_ajout_enseignement:
+    path:     /ajoutEnseignement
+    defaults: { _controller: CalendarBundle:Index:ajoutEnseignement }
