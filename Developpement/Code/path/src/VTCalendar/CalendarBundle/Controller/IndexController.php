@@ -14,7 +14,12 @@ class IndexController extends Controller
         $session = new Session();
         
         if($session->get('user') != null){
-            return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user')));
+            
+            $conn = $this->get('database_connection');
+            $event = $conn->fetchAll('SELECT seances.codeSeance, seances.dateSeance, seances.heureSeance, seances.dureeSeance, seances.Commentaire, enseignements.nom FROM enseignements, seances WHERE enseignements.codeEnseignement = seances.codeEnseignement');
+            
+            
+            return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event));
         }
         
         else{

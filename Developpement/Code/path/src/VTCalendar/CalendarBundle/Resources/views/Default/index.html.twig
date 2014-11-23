@@ -164,50 +164,34 @@
                            }
 
                            function getEventData() {
+                              
                               var year = new Date().getFullYear();
                               var month = new Date().getMonth();
                               var day = new Date().getDate();
+                              var t =  new Date("2014-11-23");
 
                               return {
                                  events : [
-                                    {
-                                       "id":1,
-                                       "start": new Date(year, month, day, 12),
-                                       "end": new Date(year, month, day, 13, 30),
-                                       "title":"Lunch with Mike"
-                                    },
-                                    {
-                                       "id":2,
-                                       "start": new Date(year, month, day, 14),
-                                       "end": new Date(year, month, day, 14, 45),
-                                       "title":"Dev Meeting"
-                                    },
-                                    {
-                                       "id":3,
-                                       "start": new Date(year, month, day + 1, 17),
-                                       "end": new Date(year, month, day + 1, 17, 45),
-                                       "title":"Hair cut"
-                                    },
-                                    {
-                                       "id":4,
-                                       "start": new Date(year, month, day - 1, 8),
-                                       "end": new Date(year, month, day - 1, 9, 30),
-                                       "title":"Team breakfast"
-                                    },
-                                    {
-                                       "id":5,
-                                       "start": new Date(year, month, day + 1, 14),
-                                       "end": new Date(year, month, day + 1, 15),
-                                       "title":"Product showcase"
-                                    },
-                                    {
-                                       "id":6,
-                                       "start": new Date(year, month, day, 10),
-                                       "end": new Date(year, month, day, 11),
-                                       "title":"I'm read-only",
-                                       readOnly : true
-                                    }
-
+                                    
+                                    
+                                    {% for event in events %}
+                               
+                                      {
+                                       "id": {{event.codeSeance}},
+                                       {% if event.heureSeance|length == 3 %}
+                                       "start": new Date("{{event.dateSeance|slice(0, 4)}}", "{{event.dateSeance|slice(5, 2) - 1}}", "{{event.dateSeance|slice(8, 2)}}", "{{event.heureSeance|slice(0, 1)}}", "{{event.heureSeance|slice(1, 2)}}"),
+                                       "end": new Date("{{event.dateSeance|slice(0, 4)}}", "{{event.dateSeance|slice(5, 2) - 1}}", "{{event.dateSeance|slice(8, 2)}}", "{{event.heureSeance|slice(0, 1) + event.dureeSeance|slice(0, 1)}}", "{{event.heureSeance|slice(1, 2) + event.dureeSeance|slice(1, 2)}}"),
+                                       {% else %}
+                                       "start": new Date("{{event.dateSeance|slice(0, 4)}}", "{{event.dateSeance|slice(5, 2) - 1}}", "{{event.dateSeance|slice(8, 2)}}", "{{event.heureSeance|slice(0, 2)}}", "{{event.heureSeance|slice(2, 2)}}"),
+                                       "end": new Date("{{event.dateSeance|slice(0, 4)}}", "{{event.dateSeance|slice(5, 2) - 1}}", "{{event.dateSeance|slice(8, 2)}}", "{{event.heureSeance|slice(0, 2) + event.dureeSeance|slice(0, 1)}}", "{{event.heureSeance|slice(2, 2) + event.dureeSeance|slice(1, 2)}}"),
+                                       {% endif %}
+                                       "title":"{{event.nom}}"
+                                      
+                                      },
+    
+                                                
+                                    {% endfor %}
+                                    
                                  ]
                               };
                            }
@@ -328,7 +312,7 @@
 
 	<header>
             <h1>Visual Timetabling <a href="{{path('calendar_logout')}}" title="Déconnexion"><img id="logout-icon" title="Déconnexion" src="{{ asset('images/logout.png') }}" /></a></h1>
-                
+            
 	</header>
 	
 	<body>
