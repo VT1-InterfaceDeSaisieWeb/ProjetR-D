@@ -307,6 +307,7 @@
                                 
                                
 		</script>
+    
 		
 	</head>
 
@@ -443,9 +444,14 @@ Script COLOR  -->
                                           <span>Entrez le nom complet de l'enseignement</span>
                                    </li>
                                    <li>
-                                         <label for=codematiere>Code de la matière</label><br>
-                                         <input id="codematiere" name="codematiere" type="number" placeholder="Code de la matière" required>
-                                         <span>Entrez le code de la matière associée</span>
+                                         <label for=codematiere>Matière associée</label><br>
+                                         <select name="lstMatieres">
+                                            <option disabled selected> -- Sélectionnez une matière -- </option>
+                                            {% for matsql in lstSqlMatiere %}
+                                                <option value="{{ matsql.codeMatiere }}">{{ matsql.nom }}</option>
+                                            {% endfor %}
+                                         </select>
+                                         <span>Choisissez la matière associée</span>
                                    </li>
                                    <li>
                                          <label for=dureetotale>Durée de l'enseignement</label><br>
@@ -464,12 +470,23 @@ Script COLOR  -->
                                    </li>
                                    <li>
                                          <label for=codetypesalle>Code du type de salle</label><br>
-                                         <input id="codetypesalle" name="codetypesalle" type="number" placeholder="Type de salle" required>
+                                         <select name="codetypesalle" required>
+                                              <option disabled selected> -- Sélectionnez le type de salle -- </option>
+                                              {% for typesql in lstSqlType %}
+                                                  <option value="{{ typesql.codeTypeSalle }}">{{ typesql.nom }}</option>
+                                              {% endfor %}
+                                           </select>
                                          <span>Type de salle où aura lieu l'enseignement</span>
                                    </li>
                                    <li>
                                          <label for=codezonesalle>Code zone de salle</label><br>
-                                         <input id="codezonesalle" name="codezonesalle" type="number" placeholder="Zone de salle" required>
+                                         <select name="codezonesalle" required>
+                                            <option disabled selected> -- Sélectionnez une zone de salle -- </option>
+                                            {% for zonesql in lstSqlZoneSalle %}
+                                                <option value="{{ zonesql.codeZoneSalle }}">{{ zonesql.nom }}</option>
+                                            {% endfor %}
+                                         </select>
+                                         <span>Zone où aura lieu l'enseignement</span>
                                    </li>
                                    <li>
                                          <label for=nbseanceshebdo>Nombre de séances par semaine</label><br>
@@ -493,8 +510,13 @@ Script COLOR  -->
                                    </li>
                                    <li>
                                          <label for="codeNiveau">Code niveau de l'enseignement</label><br>
-                                         <input id="codeNiveau" name="codeNiveau" type="number" placeholder="Niveau" required>
-                                         <span>Renseignez le code du niveau de l'enseignement</span>
+                                           <select name="codeNiveau" required>
+                                              <option disabled selected> -- Sélectionnez le niveau de l'enseignement -- </option>
+                                              {% for lvlsql in lstSqlNiveau %}
+                                                  <option value="{{ lvlsql.codeNiveau }}">{{ lvlsql.nom }}</option>
+                                              {% endfor %}
+                                           </select>
+                                         <span>Renseignez le niveau de l'enseignement</span>
                                    </li>
                                    <li>
                                          <label for="commentaires">Commentaires</label><br>

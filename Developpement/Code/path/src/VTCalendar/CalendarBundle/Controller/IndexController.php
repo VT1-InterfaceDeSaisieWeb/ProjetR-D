@@ -17,9 +17,13 @@ class IndexController extends Controller
             
             $conn = $this->get('database_connection');
             $event = $conn->fetchAll('SELECT seances.codeSeance, seances.dateSeance, seances.heureSeance, seances.dureeSeance, seances.Commentaire, enseignements.nom FROM enseignements, seances WHERE enseignements.codeEnseignement = seances.codeEnseignement');
+            $sqlmatiere = $conn->fetchAll('SELECT MATIERES.codeMatiere, MATIERES.nom FROM MATIERES');
+            $sqlzonesalle = $conn->fetchAll('SELECT ZONES_SALLES.codeZoneSalle, ZONES_SALLES.nom FROM ZONES_SALLES');
+            $sqlniveau = $conn->fetchAll('SELECT NIVEAUX.codeNiveau, NIVEAUX.nom FROM NIVEAUX');
+            $sqltypesalle = $conn->fetchAll('SELECT TYPES_SALLES.codeTypeSalle, TYPES_SALLES.nom FROM TYPES_SALLES');
+        
             
-            
-            return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event));
+            return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event, 'lstSqlMatiere' => $sqlmatiere, 'lstSqlZoneSalle' => $sqlzonesalle, 'lstSqlNiveau' => $sqlniveau, 'lstSqlType' => $sqltypesalle));
         }
         
         else{
@@ -57,7 +61,7 @@ class IndexController extends Controller
             $db  = mysql_select_db("VT");
             
             $nom = $request->get('nom');
-            $codeMatiere = $request->get('codematiere');
+            $codeMatiere = $request->get('lstMatieres');
             $dureeTotale = $request->get('dureetotale');
             $dureeSeance = $request->get('dureeseance');
             $alias = $request->get('alias');

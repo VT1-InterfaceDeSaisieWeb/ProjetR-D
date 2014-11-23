@@ -303,12 +303,20 @@ word-wrap: break-word;
 		display: none;
 	}
 
+	#formulaire_enseignement select  + span{
+		display: none;
+	}
+
 	#formulaire_enseignement input:required{
 		background:url(required.gif) 98% center no-repeat;
 	}
 	
 #formulaire_enseignement textarea:required{
 	background:url(required.gif) 98% center no-repeat;
+}
+
+#formulaire_enseignement select:required{
+	background:url(required.gif) 91% center no-repeat;
 }
 
 	#formulaire_enseignement input:focus:invalid{
@@ -322,6 +330,11 @@ word-wrap: break-word;
 	}
 
 	#formulaire_enseignement input:focus:invalid + span{
+		display: block;
+		color: #FF0000;
+	}
+
+	#formulaire_enseignement select:focus:invalid + span{
 		display: block;
 		color: #FF0000;
 	}
@@ -340,6 +353,10 @@ word-wrap: break-word;
 	}
 
 		#formulaire_enseignement textarea:focus:valid{
+		border-color:#54c93f;
+	}
+
+	#formulaire_enseignement select:focus:valid{
 		border-color:#54c93f;
 	}
 
