@@ -13,10 +13,19 @@ class IndexController extends Controller
     {
         $session = new Session();
         
-        if($session->get('user') != null){
+        if($session->get('user_id') != null){
             
+            $user = $session->get('user_id');
             $conn = $this->get('database_connection');
-            $event = $conn->fetchAll('SELECT seances.codeSeance, seances.dateSeance, seances.heureSeance, seances.dureeSeance, seances.Commentaire, enseignements.nom FROM enseignements, seances WHERE enseignements.codeEnseignement = seances.codeEnseignement');
+            $event = $conn->fetchAll('  SELECT DISTINCT seances.codeSeance, seances.dateSeance, seances.heureSeance, seances.dureeSeance, seances.Commentaire, enseignements.nom 
+                                        FROM enseignements, seances, seances_profs, ressources_profs, login_prof 
+                                        WHERE enseignements.codeEnseignement = seances.codeEnseignement 
+                                        AND seances.codeSeance = seances_profs.codeSeance
+                                        AND enseignements.codeEnseignement = seances.codeEnseignement
+                                        AND ressources_profs.codeProf = seances_profs.codeRessource
+                                        AND login_prof.codeProf = ressources_profs.codeProf
+                                        AND login_prof.codeProf = ?', array($user));
+            
             $sqlmatiere = $conn->fetchAll('SELECT MATIERES.codeMatiere, MATIERES.nom FROM MATIERES');
             $sqlzonesalle = $conn->fetchAll('SELECT ZONES_SALLES.codeZoneSalle, ZONES_SALLES.nom FROM ZONES_SALLES');
             $sqlniveau = $conn->fetchAll('SELECT NIVEAUX.codeNiveau, NIVEAUX.nom FROM NIVEAUX');

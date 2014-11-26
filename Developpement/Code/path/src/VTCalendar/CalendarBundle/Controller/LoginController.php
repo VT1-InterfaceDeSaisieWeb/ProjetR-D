@@ -17,13 +17,15 @@ class LoginController extends Controller
             $userMail=$request->get('mail');
             $userPassword=$request->get('mdp');
             
-            $user = $conn->fetchAll('SELECT login, codeProf FROM login_prof WHERE login = ? AND motPasse = ?', array($userMail, md5($userPassword)));
-        
+            $statement = $conn->executeQuery('SELECT login, codeProf FROM login_prof WHERE login = ? AND motPasse = ?', array($userMail, md5($userPassword)));
+            $user = $statement->fetch();
+            
             if($user){
+                
                 
                 $session = new Session();
                 $session->start();
-                $session->set('user', $user);
+                $session->set('user_id', $user['codeProf']);
                 
                 return new RedirectResponse($this->generateUrl('calendar_home_page'));
             }   
