@@ -353,22 +353,168 @@
                                                  <span>Date: </span><span class="date_holder"></span> 
                                          </li>
                                          <li>
-                                                 <label for="start">Start Time: </label><select name="start"><option value="">Select Start Time</option></select>
+                                                 <label for="start">Heure de début: </label><select name="start"><option value="">Sélectionner l'heure de début</option></select>
                                          </li>
                                          <li>
-                                                 <label for="end">End Time: </label><select name="end"><option value="">Select End Time</option></select>
+                                                 <label for="end">Heure de fin: </label><select name="end"><option value="">Sélectionner l'heure de fin</option></select>
                                          </li>
                                          <li>
-                                                 <label for="title">Title: </label><input type="text" name="title" />
+                                                 <label for="title">Enseignement: </label><input type="text" name="title" />
                                          </li>
                                          <li>
-                                                 <label for="body">Body: </label><textarea name="body"></textarea>
+                                                 <label for="body">Classe: </label><textarea name="body"></textarea>
                                          </li>
                                  </ul>
                          </form>
                  </div>
 
 	 <!-- 
+=======
+		
+			<div id="calendar">
+			</div>
+			
+		<!-- Formulaire ajout matière -->
+	
+	<div id="formulaire_matiere" style="display: none" class="box">
+            <form action="{{path('calendar_ajout_matiere')}}" method="POST">
+		   
+		<fieldset>
+			<legend>Nouvelle matière</legend>
+
+			<ol>
+                            
+			  <li>
+				<label for=nom>Nom</label>
+				<input id=nom name=nom type="text" placeholder="Intitulé matière" required autofocus>
+			  </li>
+                          
+			<!--  <li>
+				<label for=code>Code</label>
+				<input id=codem name=code type="number" placeholder="Code matière" required>
+			  </li>
+                          
+			  <li>
+				<label for="color-picker">Choix de la couleur de fond</label>
+				<input type="color" name="color-picker" id="color-picker" value="ff0000">
+			  </li>
+                          
+			  <li>
+				<label for=alias>Alias</label>
+				<input id=alias name=code type=text placeholder="Alias matière" required>
+			  </li>
+                          
+			  <li>
+				<label for="color-picker">Choix de la couleur de police</label>
+				<input type="color" name="color-picker" id="color-picker" value="ff0000">
+			  </li>
+                        -->
+                        
+			</ol>
+		</fieldset>
+		<fieldset>
+			<button type=submit>Valider</button>
+		</fieldset>
+            </form>
+	</div>
+	
+	
+	<!-- Fin formulaire ajout matière-->
+	
+	
+	
+	<!-- Formulaire ajout enseignement -->
+	
+	<div id="formulaire_enseignement" style="display: none" class="box">
+	
+		<fieldset>
+			<legend>Nouvel enseignement</legend>
+
+			<ol>
+			  <li>
+				<label for=nom>Nom de l'enseignement</label>
+				<input id=nom name=nom type="text" placeholder="Intitulé de l'enseignement" required autofocus>
+			  </li>
+			  <li>
+				<label for=codeenseignement>Code enseignement</label>
+				<input id=codeenseignement name=codeenseignement type="number" placeholder="Code de l'enseignement" required>
+			  </li>
+			  <li>
+				<label for=codematiere>Code de la matière</label>
+				<input id=codematiere name=codematiere type="number" placeholder="Code de la matière associée" required>
+			  </li>
+			  <li>
+				<label for=dureetotale>Durée de l'enseignement</label>
+				<input id=dureetotale name=dureetotale type="number" placeholder="Durée de l'enseignement" required>
+			  </li>
+			  <li>
+				<label for=dureeseance>Durée des séances</label>
+				<input id=dureeseance name=dureeseance type="number" placeholder="Durée des seances" required>
+			  </li>
+			  <li>
+				<label for="color-picker">Choix de la couleur de fond</label>
+				<input type="color" name="color-picker" id="color-picker" value="ff0000">
+			  </li>
+			  <li>
+				<label for=alias>Alias</label>
+				<input id=alias name=code type=text placeholder="Alias matière" required>
+			  </li>
+			  <li>
+				<label for="color-picker">Choix de la couleur de police</label>
+				<input type="color" name="color-picker" id="color-picker" value="ff0000">
+			  </li>
+			  <li>
+				<label for=codetypesalle>Code du type de salle</label>
+				<input id=codetypesalle name=codetypesalle type="number" placeholder="Type de salle" required>
+			  </li>
+			  <li>
+				<label for=codezonesalle>Code zone de salle</label>
+				<input id=codezonesalle name=codezonesalle type="number" placeholder="Zone de salle" required>
+			  </li>
+			  <li>
+				<label for=nbseanceshebdo>Nombre de séances par semaine</label>
+				<input id=nbseanceshebdo name=nbseanceshebdo type="number" placeholder="Nombre de séances hebdomadaire" required>
+			  </li>
+			</ol>
+		</fieldset>
+		<fieldset>
+			<button type=submit>Valider</button>
+		</fieldset>
+	
+	</div>
+	
+	<!-- Fin formulaire ajout enseignement-->
+		
+		
+		
+       </div>
+           
+            
+            <div id="event_edit_container">
+		<form>
+			<input type="hidden" />
+			<ul>
+				<li>
+					<span>Date: </span><span class="date_holder"></span> 
+				</li>
+				<li>
+					<label for="start">Start Time: </label><select name="start"><option value="">Select Start Time</option></select>
+				</li>
+				<li>
+					<label for="end">End Time: </label><select name="end"><option value="">Select End Time</option></select>
+				</li>
+				<li>
+					<label for="title">Title: </label><input type="text" name="title" />
+				</li>
+				<li>
+					<label for="body">Body: </label><textarea name="body"></textarea>
+				</li>
+			</ul>
+		</form>
+	</div>
+	
+	 <!-- Script COLOR  -->
+>>>>>>> Stashed changes
   <script>
 	  var initColorpicker = function() {
 		$('input[type=color]').each(function() {

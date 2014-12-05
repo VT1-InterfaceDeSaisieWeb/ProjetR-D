@@ -17,3 +17,7 @@ calendar_ajout_matiere:
 calendar_ajout_enseignement:
     path:     /ajoutEnseignement
     defaults: { _controller: CalendarBundle:Index:ajoutEnseignement }
+    
+    path:     /ajout_matiere
+    defaults: { _controller: CalendarBundle:Index:ajoutMatiere }
+
