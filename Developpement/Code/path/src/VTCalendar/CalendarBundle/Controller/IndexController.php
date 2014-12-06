@@ -17,6 +17,8 @@ class IndexController extends Controller
             
             $user = $session->get('user_id');
             $conn = $this->get('database_connection');
+            
+            //Requête pour permettre l'affichage des séances pour un prof connecté
             $event = $conn->fetchAll('  SELECT DISTINCT seances.codeSeance, seances.dateSeance, seances.heureSeance, seances.dureeSeance, seances.Commentaire, enseignements.nom 
                                         FROM enseignements, seances, seances_profs, ressources_profs, login_prof 
                                         WHERE enseignements.codeEnseignement = seances.codeEnseignement 
@@ -26,13 +28,17 @@ class IndexController extends Controller
                                         AND login_prof.codeProf = ressources_profs.codeProf
                                         AND login_prof.codeProf = ?', array($user));
             
+            // Requêtes pour liste déroulante - formulaire Enseignement
             $sqlmatiere = $conn->fetchAll('SELECT MATIERES.codeMatiere, MATIERES.nom FROM MATIERES');
             $sqlzonesalle = $conn->fetchAll('SELECT ZONES_SALLES.codeZoneSalle, ZONES_SALLES.nom FROM ZONES_SALLES');
             $sqlniveau = $conn->fetchAll('SELECT NIVEAUX.codeNiveau, NIVEAUX.nom FROM NIVEAUX');
             $sqltypesalle = $conn->fetchAll('SELECT TYPES_SALLES.codeTypeSalle, TYPES_SALLES.nom FROM TYPES_SALLES');
-        
             
-            return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event, 'lstSqlMatiere' => $sqlmatiere, 'lstSqlZoneSalle' => $sqlzonesalle, 'lstSqlNiveau' => $sqlniveau, 'lstSqlType' => $sqltypesalle));
+             // Requêtes pour liste déroulante - formulaire Séance
+            $sqlenseignement = $conn->fetchAll('SELECT enseignements.codeEnseignement, enseignements.nom FROM enseignements');
+            return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event, 'lstSqlMatiere' => $sqlmatiere, 'lstSqlZoneSalle' => $sqlzonesalle, 'lstSqlNiveau' => $sqlniveau, 'lstSqlType' => $sqltypesalle, 'lstSqlEnseignement' => $sqlenseignement));
+            
+            
         }
         
         else{

@@ -57,13 +57,16 @@
                                  resetForm($dialogContent);
                                  var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
                                  var endField = $dialogContent.find("select[name='end']").val(calEvent.end);
-                                 var titleField = $dialogContent.find("input[name='title']");
-                                 var bodyField = $dialogContent.find("textarea[name='body']");
+                                 //changement formulaire - choix enseignement / classe
+                                 var enseignementField = $dialogContent.find("select[name='enseignement']");
+                                 var classeField = $dialogContent.find("select[name='classe']");
+                                 //var titleField = $dialogContent.find("input[name='title']");
+                                 //var bodyField = $dialogContent.find("textarea[name='body']");
 
 
                                  $dialogContent.dialog({
                                     modal: true,
-                                    title: "New Calendar Event",
+                                    title: "Nouvelle séance",
                                     close: function() {
                                        $dialogContent.dialog("destroy");
                                        $dialogContent.hide();
@@ -75,8 +78,11 @@
                                           id++;
                                           calEvent.start = new Date(startField.val());
                                           calEvent.end = new Date(endField.val());
-                                          calEvent.title = titleField.val();
-                                          calEvent.body = bodyField.val();
+                                          //changement formulaire - choix enseignement / classe
+                                          calEvent.enseignement = titleField.val();
+                                          calEvent.classe = titleField.val();
+                                          //calEvent.title = titleField.val();
+                                          //calEvent.body = bodyField.val();
 
                                           $calendar.weekCalendar("removeUnsavedEvents");
                                           $calendar.weekCalendar("updateEvent", calEvent);
@@ -353,16 +359,25 @@
                                                  <span>Date: </span><span class="date_holder"></span> 
                                          </li>
                                          <li>
-                                                 <label for="start">Heure de début: </label><select name="start"><option value="">Sélectionner l'heure de début</option></select>
+                                                 <label for="start">Heure de début: </label><select name="start"><option value="">-- Sélectionner l'heure de début --</option></select>
                                          </li>
                                          <li>
-                                                 <label for="end">Heure de fin: </label><select name="end"><option value="">Sélectionner l'heure de fin</option></select>
+                                                 <label for="end">Heure de fin: </label><select name="end"><option value="">-- Sélectionner l'heure de fin --</option></select>
                                          </li>
                                          <li>
-                                                 <label for="title">Enseignement: </label><input type="text" name="title" />
+                                                 <label for="enseignement">Enseignement: </label>
+                                                 
+                                                 <select name="enseignement"><option disabled selected>-- Sélectionner un enseignement-- </option>
+                                                     
+                                                      {% for enssql in lstSqlEnseignement %}
+                                                          <option value="{{ enssql.codeEnseignement }}">{{ enssql.nom }}</option>
+                                                      {% endfor %}
+                                                      
+                                                 
+                                                 </select>
                                          </li>
                                          <li>
-                                                 <label for="body">Classe: </label><textarea name="body"></textarea>
+                                                 <label for="classe">Classe: </label><select name="start"><option value="">Sélectionner la classe</option></select>
                                          </li>
                                  </ul>
                          </form>
@@ -514,7 +529,6 @@
 	</div>
 	
 	 <!-- Script COLOR  -->
->>>>>>> Stashed changes
   <script>
 	  var initColorpicker = function() {
 		$('input[type=color]').each(function() {
@@ -546,22 +560,7 @@ Script COLOR  -->
                                        <label for=nom>Nom</label><br>
                                          <input id= "nom" name= "nom" type="text" placeholder="Intitulé matière" required autofocus>
                                    </li>
-                                   <!--<li>
-                                         <label for=code>Code</label><br>
-                                         <input id=codem name=code type="number" placeholder="Code matière" required>
-                                   </li>
-                                   <li>
-                                         <label for="color-picker">Choix de la couleur de fond</label><br>
-                                         <input type="color" name="color-picker" id="color-picker" value="ff0000">
-                                   </li>
-                                   <li>
-                                         <label for=alias>Alias</label><br>
-                                         <input id=alias name=code type=text placeholder="Alias matière" required>
-                                   </li>
-                                   <li>
-                                         <label for="color-picker">Choix de la couleur de police</label><br>
-                                         <input type="color" name="color-picker" id="color-picker" value="ff0000">
-                                   </li>-->
+                
                                  </ol>
                          </fieldset>
                          <fieldset>
