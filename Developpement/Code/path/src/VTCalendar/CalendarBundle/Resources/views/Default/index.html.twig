@@ -501,7 +501,42 @@
 	<!-- Fin formulaire ajout enseignement-->
 		
 		
-		
+        <!-- Adaptation pour plage horaire étendu de séance -->
+        
+         <div id="event_edit_container">
+                         <form>
+                                 <input type="hidden" />
+                                 <ul>
+                                         <li>
+                                                 <span>Date: </span><span class="date_holder"></span> 
+                                         </li>
+                                         <li>
+                                                 <label for="start">Heure de début: </label><select name="start"><option value="">-- Sélectionner l'heure de début --</option></select>
+                                         </li>
+                                         <li>
+                                                 <label for="end">Heure de fin: </label><select name="end"><option value="">-- Sélectionner l'heure de fin --</option></select>
+                                         </li>
+                                         <li>
+                                                 <label for="enseignement">Enseignement: </label>
+                                                 
+                                                 <select name="enseignement"><option disabled selected>-- Sélectionner un enseignement-- </option>
+                                                     
+                                                      {% for enssql in lstSqlEnseignement %}
+                                                          <option value="{{ enssql.codeEnseignement }}">{{ enssql.nom }}</option>
+                                                      {% endfor %}
+                                                      
+                                                 
+                                                 </select>
+                                         </li>
+                                         <li>
+                                                 <label for="classe">Classe: </label><select name="start"><option value="">Sélectionner la classe</option></select>
+                                         </li>
+                                 </ul>
+                         </form>
+                 </div>
+             
+        
+<!--        
        </div>
            
             
@@ -528,6 +563,7 @@
 		</form>
 	</div>
 	
+-->
 	 <!-- Script COLOR  -->
   <script>
 	  var initColorpicker = function() {
