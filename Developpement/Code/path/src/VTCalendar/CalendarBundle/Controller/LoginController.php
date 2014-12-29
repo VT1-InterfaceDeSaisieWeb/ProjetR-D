@@ -57,5 +57,56 @@ class LoginController extends Controller
         //return $this->render('IbiscReservationBundle:Default:login.html.twig', array('alert' => 0));
         return new RedirectResponse($this->generateUrl('calendar_login_page'));
     }
+    
+    // Fonction d'envoi de mail suite à l'oubli de son mot de passe
+    public function sendMailAction(){
+        $message = \Swift_Message::newInstance()
+        ->setSubject('Visual Time Tabling - Oubli de votre mot de passe')
+        ->setFrom('do-not-reply@ibiscreservation.fr')
+        ->setTo('christelleayangma@yahoo.fr')
+        ->setBody('<h1> test </h1>', 'text/html');
+        
+        $this->get('mailer')->send($message);
+        
+        return $this->render('CalendarBundle:Default:login.html.twig');
+    }
+     
+    // Fonction d'affichage de la page d'oubli de mot de passe
+    public function affichageOubliMdpAction(){
+        return $this->render('CalendarBundle:Default:oubliMdp.html.twig');
+    }
+        
+    // Fonction de vérification pour le changement de mot de passe - à terminer lors de l'ajout de mail
+    public function testOubliMdpAction(Request $request)
+    {
+        $connection = mysql_connect( "localhost", "root", "root" ) ;
+        $db  = mysql_select_db( "VT" ) ;
+        
+        $nomUser = $request->get('user');
+        
+        return $this->render('CalendarBundle:Default:oubliMdp.html.twig');
+        
+    }
+     
+    // Fonction d'affichage de la page de création d'un compte utilisateur
+    public function affichageCreationCompteAction() {
+        return $this->render('CalendarBundle:Default:creationCompte.html.twig');
+    }
+     
+     //Fonction de création d'un compte utilisateur - à terminer lors de l'ajout de mail
+      public function creationCompteAction(Request $request){
+        $connection = mysql_connect( "localhost", "root", "root" ) ;
+        $db  = mysql_select_db( "VT" ) ;
+        
+        $nomUser = $request->get('nom');
+        
+        $sql = "INSERT INTO utilisateurs(login) VALUES('$nomUser')";
+            
+        $requete = mysql_query($sql, $connection) or die( mysql_error() );
+        
+        echo "user ajouté !!";
+        return $this->render('CalendarBundle:Default:login.html.twig');
+    }
+     
 
 }

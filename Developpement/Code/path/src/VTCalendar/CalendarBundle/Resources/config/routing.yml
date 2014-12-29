@@ -1,6 +1,23 @@
 calendar_login_page:
     path:     /login
     defaults: { _controller: CalendarBundle:Login:login }
+        
+calendar_oubli_mdp_page:
+    path:     /oubliMdpPage
+    defaults: { _controller: CalendarBundle:Login:affichageOubliMdp }
+    
+    
+calendar_oubli_mdp:
+    path:     /oubliMdp
+    defaults: { _controller: CalendarBundle:Login:testOubliMdp }
+    
+calendar_creation_compte_page:
+    path:     /creationComptePage
+    defaults: { _controller: CalendarBundle:Login:affichageCreationCompte }
+    
+calendar_creation_compte:
+    path:     /creationCompte
+    defaults: { _controller: CalendarBundle:Login:creationCompte }   
 
 calendar_logout:
     path:     /logout
@@ -18,6 +35,4 @@ calendar_ajout_enseignement:
     path:     /ajoutEnseignement
     defaults: { _controller: CalendarBundle:Index:ajoutEnseignement }
     
-    path:     /ajout_matiere
-    defaults: { _controller: CalendarBundle:Index:ajoutMatiere }
 
