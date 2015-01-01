@@ -5,7 +5,7 @@
 
 
 #menu_item{
--webkit-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
 }
 
 
@@ -334,11 +334,6 @@ word-wrap: break-word;
 		color: #FF0000;
 	}
 
-	#formulaire_enseignement select:focus:invalid + span{
-		display: block;
-		color: #FF0000;
-	}
-
 #formulaire_enseignement textarea:focus:invalid + span{
 	display: block;
 	color: #FF0000;
@@ -356,8 +351,9 @@ word-wrap: break-word;
 		border-color:#54c93f;
 	}
 
-	#formulaire_enseignement select:focus:valid{
-		border-color:#54c93f;
+	#formulaire_enseignement select:hover + span{
+		display: block;
+		color: #FF0000;
 	}
 
 	#formulaire_enseignement textarea:valid{
