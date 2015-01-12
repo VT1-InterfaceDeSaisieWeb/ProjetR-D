@@ -1,3 +1,5 @@
+
+<!--
 <html lang="en-US">
 <head>
 
@@ -15,7 +17,6 @@
           Veuillez renseigner votre nom d'utilisateur. Un mail sera envoyé à l'adresse indiqué lors de la création de votre compte.
           Le mail contiendra un lien pour le changement de votre mot de passe.
           
-          <!-- action : path à changer avec la fonction de récup des valeurs -->
          <form action="{{path('calendar_oubli_mdp')}}" method="POST">
            <label>Nom d'utilisateur </label> : <input type="text" name="user" />
            <input TYPE="submit" NAME="soumettre" VALUE="Soumettre">
@@ -24,3 +25,41 @@
     
 </body>
 </html>
+
+-->
+
+<html lang="en-US">
+<head>
+
+	<meta charset="utf-8">
+
+	<title>Mot de passe oublié</title>
+	<link rel="stylesheet" href="../css/login.css" />
+
+</head>
+
+<body>
+	
+	 <header> <h1> Visual Timetabling - Mot de passe oublié</h1> </header>
+
+    <div id="oubli-mdp-form">
+
+        <h3> Veuillez renseigner votre nom d'utilisateur. Un mail sera envoyé à l'adresse indiqué lors de la création de votre compte.
+          Le mail contiendra un lien pour le changement de votre mot de passe.</h3>
+
+        <fieldset>
+
+            <form action="{{path('calendar_oubli_mdp')}}" method="POST">
+
+                <label>Nom d'utilisateur </label> : <input type="text" name="user" /> <br>
+                 <input TYPE="submit" NAME="soumettre" VALUE="Soumettre">
+
+            </form>
+
+        </fieldset>
+
+    </div>
+
+</body>
+</html> 
+

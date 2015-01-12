@@ -72,7 +72,22 @@ input[type="submit"] { cursor: pointer; }
 	width: 300px;
 }
 
+#oubli-mdp-form{
+        margin: 100px auto;
+	width: 800px;
+}
+
 #login-form h3 {
+	background-color: rgb(42,42,42);
+	/* border-radius: 5px 5px 0 0; */
+	color: #fff;
+	font-size: 13px;
+	padding: 20px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#oubli-mdp-form h3 {
 	background-color: rgb(42,42,42);
 	/* border-radius: 5px 5px 0 0; */
 	color: #fff;
@@ -89,7 +104,34 @@ input[type="submit"] { cursor: pointer; }
 	position: relative;
 }
 
+#oubli-mdp-form fieldset {
+	background: #fff;
+	/* border-radius: 0 0 5px 5px; */
+	padding: 20px;
+	position: relative;
+}
+
+#oubli-mdp-form form {
+	margin: 20px 250px;
+}
+
 #login-form fieldset:before {
+	background-color: #fff;
+	content: "";
+	height: 8px;
+	left: 50%;
+	margin: -4px 0 0 -4px;
+	position: absolute;
+	top: 0;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+	width: 8px;
+}
+
+#oubli-mdp-form fieldset:before {
 	background-color: #fff;
 	content: "";
 	height: 8px;
@@ -109,8 +151,19 @@ input[type="submit"] { cursor: pointer; }
 	font-size: 14px;
 }
 
+#oubli-mdp-form input {
+	font-size: 14px;
+}
+
 #login-form input[type="text"],
 #login-form input[type="password"] {
+	border: 1px solid #dcdcdc;
+	padding: 12px 10px;
+	width: 238px;
+}
+
+#oubli-mdp-form input[type="text"],
+#oubli-mdp-form input[type="password"] {
 	border: 1px solid #dcdcdc;
 	padding: 12px 10px;
 	width: 238px;
@@ -121,7 +174,18 @@ input[type="submit"] { cursor: pointer; }
         text-align: center;
 }
 
+#oubli-mdp-form input[type="text"] {
+	border-radius: 0px 0px 3px 3px;
+        text-align: center;
+        margin: 0px auto;
+}
+
 #login-form input[type="password"] {
+	border-radius: 0px 0px 3px 3px;
+        text-align: center;
+}
+
+#oubli-mdp-form input[type="password"] {
 	border-radius: 0px 0px 3px 3px;
         text-align: center;
 }
@@ -136,9 +200,26 @@ input[type="submit"] { cursor: pointer; }
 	padding: 10px 20px;
 }
 
+#oubli-mdp-form input[type="submit"] {
+	background: #1dabb8;
+	border-radius: 3px;
+	color: #fff;
+	margin: 10px 70px;
+	font-weight: bold;
+	margin-top: 20px;
+	padding: 10px 20px;
+}
+
 #login-form input[type="submit"]:hover { background: #198d98; }
 
+#oubli-mdp-form input[type="submit"]:hover { background: #198d98; }
+
 #login-form footer {
+	font-size: 10px;
+	margin-top: 1px;
+}
+
+#oubli-mdp-form footer {
 	font-size: 10px;
 	margin-top: 1px;
 }

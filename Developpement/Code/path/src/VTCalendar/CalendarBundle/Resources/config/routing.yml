@@ -1,20 +1,32 @@
 calendar_login_page:
     path:     /login
     defaults: { _controller: CalendarBundle:Login:login }
-        
+
+# Page où entrer le mail lors de l'oubli de mot de passe
 calendar_oubli_mdp_page:
     path:     /oubliMdpPage
     defaults: { _controller: CalendarBundle:Login:affichageOubliMdp }
-    
-    
+
 calendar_oubli_mdp:
+    path:     /envoiMail
+    defaults: { _controller: CalendarBundle:Login:sendMail }
+
+# fonction de changement de mot de passe
+calendar_modifier_mdp:
     path:     /oubliMdp
-    defaults: { _controller: CalendarBundle:Login:testOubliMdp }
+    defaults: { _controller: CalendarBundle:Login:verificationNouveauMdp }
+
+# Page du formulaire de changement de mot de passe
+calendar_modifier_mdp_page:
+    path:     /changementMdpPage
+    defaults: { _controller: CalendarBundle:Login:affichageChangementMdp }
     
+# Page du formulaire de création de compte   
 calendar_creation_compte_page:
     path:     /creationComptePage
     defaults: { _controller: CalendarBundle:Login:affichageCreationCompte }
-    
+
+# fonction de création de compte
 calendar_creation_compte:
     path:     /creationCompte
     defaults: { _controller: CalendarBundle:Login:creationCompte }   
