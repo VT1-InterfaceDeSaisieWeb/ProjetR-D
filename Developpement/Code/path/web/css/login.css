@@ -283,6 +283,7 @@ input[type="submit"] { cursor: pointer; }
 	width: 250px;
 	border-radius: 0px 0px 3px 3px;
     text-align: center;
+    margin-left: 40px;
 }
 
 #account-form input[type="submit"] {
@@ -300,4 +301,9 @@ input[type="submit"] { cursor: pointer; }
 #account-form footer {
 	font-size: 10px;
 	margin-top: 1px;
+}
+
+#formcompte label {
+	display: block;
+	text-align: center;
 }

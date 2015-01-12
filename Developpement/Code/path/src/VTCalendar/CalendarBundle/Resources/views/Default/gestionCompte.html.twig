@@ -19,10 +19,10 @@
 
         <fieldset>
 
-            <form method="PUT" action="{{path('calendar_gestion_compte_maj_email')}}" onsubmit="return verifFormCompte(this)">
+            <form id="formcompte" method="PUT" action="{{path('calendar_gestion_compte_maj_email')}}" onsubmit="return verifFormCompte(this)">
 			{% for lvlsql in login %}
                 <p>
-                	<label for="nom" >Login</label></br>
+                	<label for="nom" >Login</label>
                 	
                 		<input id="login" type="text" name="login" disabled="disabled" value="{{ lvlsql.login }}"/>
                 	
