@@ -68,8 +68,10 @@
                     <br> <br>
                      <label for="confirmPass"> Veillez confirmer votre nouveau mot de passe :</label>
                      <input type="password" name="confirmPass" id="confirmPass" />
-       
+                     <input type="hidden" name="userId" value="{{ app.request.get("userId") }}" />
                      <input type="submit" value="Valider" />
+                     
+                     
        
                  </p>
 

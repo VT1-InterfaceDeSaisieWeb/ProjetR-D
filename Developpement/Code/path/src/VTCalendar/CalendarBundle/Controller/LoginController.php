@@ -84,7 +84,7 @@ class LoginController extends Controller
         ->setSubject('Visual Time Tabling - Oubli de votre mot de passe')
         ->setFrom('do-not-reply@ibiscreservation.fr')
         ->setTo($mail['emailProf'])
-        ->setBody($this->render( 'CalendarBundle:Default:mailTemplate.html.twig' ),array($mail['codeProf']), 'text/html');
+        ->setBody($this->render( 'CalendarBundle:Default:mailTemplate.html.twig', array('userId'=>md5($mail['codeProf']))), 'text/html');
         
         $this->get('mailer')->send($message);
         
@@ -121,8 +121,19 @@ class LoginController extends Controller
       }
       
       else{
-           $conn->executeQuery('UPDATE login_prof SET motPasse = ?', array(md5($newMdp)));
-           return $this->render('CalendarBundle:Default:login.html.twig');
+          
+          $sqlUsers = $conn->executeQuery('SELECT codeProf FROM login_prof');
+          $allUsers = $sqlUsers->fetchAll();
+          
+          foreach($allUsers as $user){
+              if(md5($user['codeProf']) == $request->get('userId')){
+                  $userId = $user['codeProf'];
+                  break;
+              }
+          }
+          
+           $conn->executeQuery('UPDATE login_prof SET motPasse = ? WHERE codeProf = ?', array(md5($newMdp), $userId));
+           return new RedirectResponse($this->generateUrl('calendar_login_page'));
       }
       
     }  
@@ -138,8 +149,7 @@ class LoginController extends Controller
       public function creationCompteAction(Request $request){
          
         //connection à la base - à voir pour utiliser fichier ou les paramètres sont déja déclarés
-        $connection = mysql_connect( "localhost", "root", "root" ) ;
-        $db  = mysql_select_db( "VT" ) ;
+        $conn = $this->get('database_connection');
         
         $nomUser = $request->get('nom');
         $prenomUser = $request->get('prenom');
@@ -156,13 +166,20 @@ class LoginController extends Controller
       }
       
       else{
-          
-           $PassUser = md5($passUser);
-           $sql = "INSERT INTO login_prof (codeProf, login, motPasse, emailProf) VALUES(' ', '$nomUser', '$PassUser', '$mailUser')";
             
-           $requete = mysql_query($sql, $connection) or die( mysql_error() );
+            $sqlSelect = $conn->executeQuery('SELECT MAX(codeProf) as nb_id FROM login_prof');
+            $res_nb = $sqlSelect->fetch();
+            
+            $id_last = $res_nb['nb_id'];
+           
+            $id_plus = $id_last+1;
+           
+           
+            $PassUser = md5($passUser);
+      
+            
+            $sqlInsert = $conn->executeQuery('INSERT INTO login_prof (codeProf, login, motPasse, emailProf) VALUES(?,?,?,?)' , array($id_plus, $nomUser, $PassUser, $mailUser));
         
-           echo "user ajouté !!";
            return $this->render('CalendarBundle:Default:login.html.twig');
            
       }     
