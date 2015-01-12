@@ -172,22 +172,23 @@ header {
 
 #emailno span {
 	display: none;
+        
 }
 
 #emailno:hover {
 	background: none;  /*Correction d'un bug d'Internet Explorer. */
 	z-index: 500;
+        opacity: 1!important;
 }
 
 #emailno:hover span {
    display: inline; /* On affiche l'infobulle. */
    position: absolute;
-
    top: 30px; /* On positionne notre infobulle. */
    left: 20px;
-	opacity: 0.2;
+   opacity: 0.8!important;
    background: rgb(42,42,42);
-
+   
    color: white;
    padding: 3px;
 }
