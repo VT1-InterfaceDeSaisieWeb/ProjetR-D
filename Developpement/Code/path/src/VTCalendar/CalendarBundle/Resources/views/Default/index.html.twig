@@ -442,6 +442,11 @@
                          <fieldset>
                                  <button type=submit>Valider</button>
                          </fieldset>
+                         <footer class="matiere_clearfix">
+                    		<p>
+                    			<a href="{{path('calendar_home_page')}}">Retour</a>
+                    		</p>
+                    	</footer>
                     </form>
                  </div>
 
@@ -492,9 +497,12 @@
                                       <li>
                                             <label for=codetypesalle>Code du type de salle</label><br>
                                             <select name="codetypesalle" id="lstcodetypesalle" required>
-                                                 <option disabled selected value="-1"> -- Sélectionnez le type de salle -- </option>
-                                                 {% for typesql in lstSqlType %}
-                                                     <option value="{{ typesql.codeTypeSalle }}">{{ typesql.nom }}</option>
+												{% for typesql in lstSqlType %}
+                                                 	{% if typesql.codeTypeSalle == 1789 %}
+                                                     	<option selected value="{{ typesql.codeTypeSalle }}">{{ typesql.nom }}</option>
+                                                    {% else %}
+                                                    	<option value="{{ typesql.codeTypeSalle }}">{{ typesql.nom }}</option>
+                                                    {% endif %}
                                                  {% endfor %}
                                               </select>
                                             <span>Type de salle où aura lieu l'enseignement</span>
@@ -502,9 +510,12 @@
                                       <li>
                                             <label for=codezonesalle>Code zone de salle</label><br>
                                             <select name="codezonesalle" id="lstcodezonesalle" required>
-                                               <option disabled selected value="-1"> -- Sélectionnez une zone de salle -- </option>
                                                {% for zonesql in lstSqlZoneSalle %}
-                                                   <option value="{{ zonesql.codeZoneSalle }}">{{ zonesql.nom }}</option>
+	                                               {% if zonesql.codeZoneSalle == 1 %}
+	                                                   	<option selected value="{{ zonesql.codeZoneSalle }}">{{ zonesql.nom }}</option>
+	                                               {% else %}
+	                                               		<option value="{{ zonesql.codeZoneSalle }}">{{ zonesql.nom }}</option>
+	                                               {% endif %}
                                                {% endfor %}
                                             </select>
                                             <span>Zone où aura lieu l'enseignement</span>
@@ -543,9 +554,12 @@
                                     <li>
                                          <label for="Composante">Composante</label><br>
                                            <select name="composante" id="lstcomposante" required>
-                                              <option disabled selected value="-1"> -- Sélectionnez la composante -- </option>
-                                              {% for lvlsql in lstSqlComposante %}
-                                                  <option value="{{ lvlsql.codeComposante }}">{{ lvlsql.nom }}</option>
+                                               {% for lvlsql in lstSqlComposante %}
+	                                              {% if lvlsql.codeComposante == 1 %}
+	                                                  	<option selected value="{{ lvlsql.codeComposante }}">{{ lvlsql.nom }}</option>
+	                                              {% else %}
+	                                              		<option value="{{ lvlsql.codeComposante }}">{{ lvlsql.nom }}</option>
+	                                              {% endif %}
                                               {% endfor %}
                                            </select>
                                          <span>Renseignez la composante de l'enseignement</span>
@@ -562,7 +576,7 @@
                                    </li>
                                    <li>
                                          <label for="commentaires">Commentaires</label><br>
-                                         <TEXTAREA name="commentaires" rows="10" cols="30" required></TEXTAREA>
+                                         <TEXTAREA name="commentaires" rows="10" cols="30"></TEXTAREA>
                                          <span>Commentaires sur l'enseignement à ajouter</span>
                                    </li>
                                  </ol>
@@ -570,6 +584,11 @@
                          <fieldset>
                                  <button type="submit">Valider</button>
                          </fieldset>
+						<footer class="clearfix">
+                    		<p>
+                    			<a href="{{path('calendar_home_page')}}">Retour</a>
+                    		</p>
+                    	</footer>
 
                       </form>
                  </div>

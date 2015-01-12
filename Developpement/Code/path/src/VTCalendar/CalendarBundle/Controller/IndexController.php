@@ -25,12 +25,12 @@ class IndexController extends Controller
                                         ');
             
             // Requêtes pour liste déroulante - formulaire Enseignement
-            $sqlmatiere = $conn->fetchAll('SELECT MATIERES.codeMatiere, MATIERES.nom FROM MATIERES');
-            $sqlzonesalle = $conn->fetchAll('SELECT ZONES_SALLES.codeZoneSalle, ZONES_SALLES.nom FROM ZONES_SALLES');
-            $sqlniveau = $conn->fetchAll('SELECT NIVEAUX.codeNiveau, NIVEAUX.nom FROM NIVEAUX');
-            $sqltypesalle = $conn->fetchAll('SELECT TYPES_SALLES.codeTypeSalle, TYPES_SALLES.nom FROM TYPES_SALLES');
+            $sqlmatiere = $conn->fetchAll('SELECT MATIERES.codeMatiere, MATIERES.nom FROM MATIERES ORDER BY MATIERES.nom');
+            $sqlzonesalle = $conn->fetchAll('SELECT ZONES_SALLES.codeZoneSalle, ZONES_SALLES.nom FROM ZONES_SALLES ORDER BY ZONES_SALLES.nom');
+            $sqlniveau = $conn->fetchAll('SELECT NIVEAUX.codeNiveau, NIVEAUX.nom FROM NIVEAUX ORDER BY NIVEAUX.nom');
+            $sqltypesalle = $conn->fetchAll('SELECT TYPES_SALLES.codeTypeSalle, TYPES_SALLES.nom FROM TYPES_SALLES ORDER BY TYPES_SALLES.nom');
             $sqlcomposante = $conn->fetchAll('SELECT COMPOSANTES.codeComposante, COMPOSANTES.nom FROM COMPOSANTES');
-            $sqltypeactivite = $conn->fetchAll('SELECT TYPES_ACTIVITES.codeTypeActivite, TYPES_ACTIVITES.nom FROM TYPES_ACTIVITES');
+            $sqltypeactivite = $conn->fetchAll('SELECT TYPES_ACTIVITES.codeTypeActivite, TYPES_ACTIVITES.nom FROM TYPES_ACTIVITES ORDER BY TYPES_ACTIVITES.nom');
             
             $sqlemail = $conn->executeQuery('SELECT emailProf
             							FROM LOGIN_PROF

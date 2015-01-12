@@ -307,3 +307,12 @@ input[type="submit"] { cursor: pointer; }
 	display: block;
 	text-align: center;
 }
+
+.compte_clearfix p {
+	margin-left: 155px;
+}
+
+.compte_clearfix a {
+	color: #428bca;
+	font-size: medium;
+}

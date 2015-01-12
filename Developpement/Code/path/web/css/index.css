@@ -256,13 +256,13 @@ word-wrap: break-word;
 
 
 #formulaire_matiere{
-	width: 450px; 
-        height: 500px;
+	width: 350px; 
+    height: 230px;
 	background-color: white;
 	z-index: 2000;
 	box-shadow: 0px 2px 170px black;
 	position: absolute;
-	margin-top: -40%;
+	margin-top: -57%;
 	margin-left: 40%;
 	-webkit-transition: all 600ms easeInBounce;
         
@@ -286,14 +286,16 @@ word-wrap: break-word;
 	font-weight: bold;
 	margin-top: 20px;
 	padding: 10px 20px;
-	margin-left: 175px;
+	margin-left: 130px;
 }
 
 #formulaire_matiere button:hover{
 	background: #198d98;
 }
 
-
+.matiere_clearfix p {
+	margin-left: 155px;
+}
 
 #formulaire_enseignement{
 	width: 450px;
@@ -302,10 +304,10 @@ word-wrap: break-word;
 	z-index: 2000;
 	box-shadow: 0px 2px 170px black;
 	position: absolute;
-	margin-top: -40%;
+	margin-top: -57%;
 	margin-left: 40%;
-        overflow-y: auto;
-        opacity: 1!important;
+    overflow-y: auto;
+    opacity: 0;
 }
 
 #formulaire_enseignement ol{
@@ -326,7 +328,7 @@ word-wrap: break-word;
 	font-weight: bold;
 	margin-top: 20px;
 	padding: 10px 20px;
-	margin-left: 250px;
+	margin-left: 160px;
 }
 
 #formulaire_enseignement button:hover{
@@ -404,3 +406,7 @@ word-wrap: break-word;
 	-o-animation: cssAnimation 0.5s 1 ease;
 }
 	
+
+.clearfix p {
+	margin-left: 180px;
+}
