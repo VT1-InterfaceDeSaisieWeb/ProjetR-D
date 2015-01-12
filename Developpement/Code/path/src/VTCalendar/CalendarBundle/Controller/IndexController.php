@@ -19,14 +19,10 @@ class IndexController extends Controller
             $conn = $this->get('database_connection');
             
             //Requête pour permettre l'affichage des séances pour un prof connecté
-            $event = $conn->fetchAll('  SELECT DISTINCT seances.codeSeance, seances.dateSeance, seances.heureSeance, seances.dureeSeance, seances.Commentaire, enseignements.nom 
-                                        FROM enseignements, seances, seances_profs, ressources_profs, login_prof 
+            $event = $conn->fetchAll('  SELECT seances.codeSeance, seances.dateSeance, seances.heureSeance, seances.dureeSeance, seances.Commentaire, enseignements.nom 
+                                        FROM enseignements, seances
                                         WHERE enseignements.codeEnseignement = seances.codeEnseignement 
-                                        AND seances.codeSeance = seances_profs.codeSeance
-                                        AND enseignements.codeEnseignement = seances.codeEnseignement
-                                        AND ressources_profs.codeProf = seances_profs.codeRessource
-                                        AND login_prof.codeProf = ressources_profs.codeProf
-                                        AND login_prof.codeProf = ?', array($user));
+                                        ');
             
             // Requêtes pour liste déroulante - formulaire Enseignement
             $sqlmatiere = $conn->fetchAll('SELECT MATIERES.codeMatiere, MATIERES.nom FROM MATIERES');
@@ -107,15 +103,52 @@ class IndexController extends Controller
             $typeActivite = $request->get('typeactivite');
 
             $sql = "INSERT INTO enseignements(nom, codeMatiere, dureeTotale, dureeSeance, alias, codeTypeSalle, codeZoneSalle, nbSeancesHebdo, 
-                dateDebut, dateFin, identifiant, commentaire, dateCreation, codeNiveau, codeProprietaire, codeComposante, codeTypeActivite) VALUES('$nom', '$codeMatiere', 
-                '$dureeTotale', '$dureeSeance', '$alias', '$codeTypeSalle', '$codeZoneSalle', '$nbSeancesHebdo', '$dateDebut', '$dateFin', 
-                '$identifiant', '$commentaires', '$dateCreation', '$codeNiveau', '$codeProprietaire', '$composante', '$typeActivite')";
+                    dateDebut, dateFin, identifiant, commentaire, dateCreation, codeNiveau, codeProprietaire, codeComposante, codeTypeActivite) VALUES('$nom', '$codeMatiere', 
+                    '$dureeTotale', '$dureeSeance', '$alias', '$codeTypeSalle', '$codeZoneSalle', '$nbSeancesHebdo', '$dateDebut', '$dateFin', 
+                    '$identifiant', '$commentaires', '$dateCreation', '$codeNiveau', '$codeProprietaire', '$composante', '$typeActivite')";
             
             $requete = mysql_query($sql, $connection) or die( mysql_error() );
             
             echo "ajouté !!";
             return new RedirectResponse($this->generateUrl('calendar_home_page'));
             
+        }
+    }
+    
+    
+    public function ajoutSeanceAction(Request $request)
+    {
+        if($request->getMethod() == 'POST'){
+            
+            $conn = $this->get('database_connection');
+            
+            $sql = $conn->executeQuery('SELECT * FROM enseignements WHERE codeEnseignement = ?', array($request->get('enseignement')));
+            $enseignement = $sql->fetch();
+            
+            if($enseignement['dureeTotale'] - $enseignement['dureeSeance'] >= 0){
+                
+                $heureDebut = new \DateTime($request->get('start'));
+                $tmpHeureSeance = explode(':', $heureDebut->format('H:i'));
+                
+                $heureSeance = intval($tmpHeureSeance[0].$tmpHeureSeance[1]);
+                $dateSeance = new \DateTime($request->get('dateSeance'));
+                $dateCreation = new \DateTime();
+                $commentaire = $request->get('commentaire');
+                
+                $conn->executeQuery('INSERT INTO seances (codeSeance, dateSeance, heureSeance, dureeSeance, codeEnseignement, dateCreation, deleted, codeProprietaire, commentaire, diffusable)
+                                     VALUES (0, ?, ?, ?, ?, ?, 0, 777, ?, 0)', array($dateSeance->format('Y-m-d'), $heureSeance, $enseignement['dureeSeance'], $enseignement['codeEnseignement'], $dateCreation->format('Y-m-d H:i:sP'), $commentaire));
+                
+                $updateDureeTotale = $enseignement['dureeTotale'] - $enseignement['dureeSeance'];
+                $conn->executeQuery('UPDATE enseignements SET dureeTotale = ?' , array($updateDureeTotale));
+                
+                return new RedirectResponse($this->generateUrl('calendar_home_page'));         
+                
+            }
+ 
+        }
+        
+        else{
+            return new RedirectResponse($this->generateUrl('calendar_home_page'));         
         }
     }
     

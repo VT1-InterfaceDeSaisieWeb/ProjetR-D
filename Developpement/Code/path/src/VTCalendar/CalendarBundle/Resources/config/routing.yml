@@ -46,6 +46,10 @@ calendar_ajout_matiere:
 calendar_ajout_enseignement:
     path:     /ajoutEnseignement
     defaults: { _controller: CalendarBundle:Index:ajoutEnseignement }
+
+calendar_ajout_seance:
+    path:     /ajoutSeance
+    defaults: { _controller: CalendarBundle:Index:ajoutSeance }
     
 calendar_gestion_compte:
     path:     /gestionCompte
