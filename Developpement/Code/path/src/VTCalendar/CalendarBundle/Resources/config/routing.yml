@@ -50,6 +50,10 @@ calendar_ajout_enseignement:
 calendar_ajout_seance:
     path:     /ajoutSeance
     defaults: { _controller: CalendarBundle:Index:ajoutSeance }
+
+calendar_supprimer_seance:
+    path:     /supprimerSeance
+    defaults: { _controller: CalendarBundle:Index:supprimerSeance }
     
 calendar_gestion_compte:
     path:     /gestionCompte

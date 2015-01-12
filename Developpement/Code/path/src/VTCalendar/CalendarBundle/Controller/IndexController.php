@@ -139,12 +139,38 @@ class IndexController extends Controller
                                      VALUES (0, ?, ?, ?, ?, ?, 0, 777, ?, 0)', array($dateSeance->format('Y-m-d'), $heureSeance, $enseignement['dureeSeance'], $enseignement['codeEnseignement'], $dateCreation->format('Y-m-d H:i:sP'), $commentaire));
                 
                 $updateDureeTotale = $enseignement['dureeTotale'] - $enseignement['dureeSeance'];
-                $conn->executeQuery('UPDATE enseignements SET dureeTotale = ?' , array($updateDureeTotale));
+                $conn->executeQuery('UPDATE enseignements SET dureeTotale = ? WHERE codeEnseignement = ?' , array($updateDureeTotale, $enseignement['codeEnseignement']));
                 
                 return new RedirectResponse($this->generateUrl('calendar_home_page'));         
                 
             }
  
+        }
+        
+        else{
+            return new RedirectResponse($this->generateUrl('calendar_home_page'));         
+        }
+    }
+    
+    public function supprimerSeanceAction(Request $request)
+    {
+        if($request->getMethod() == 'POST'){
+            
+            $conn = $this->get('database_connection');
+            
+            $selectSeance = $conn->executeQuery('SELECT codeEnseignement, dureeSeance FROM seances WHERE codeSeance = ?', array($request->get('codeSeance')));
+            $seance = $selectSeance->fetch();
+            
+            $selectDureeTotaleEnseignement = $conn->executeQuery('SELECT dureeTotale FROM enseignements WHERE codeEnseignement = ?', array($seance['codeEnseignement']));
+            $dureeTotaleEnseignement = $selectDureeTotaleEnseignement->fetch();
+            
+            $updateDureeTotale = $dureeTotaleEnseignement['dureeTotale'] + $seance['dureeSeance'];
+            
+            
+            $conn->executeQuery('DELETE FROM seances WHERE codeSeance = ?', array($request->get('codeSeance')));
+            $conn->executeQuery('UPDATE enseignements SET dureeTotale = ? WHERE codeEnseignement = ?', array($updateDureeTotale, $seance['codeEnseignement']));
+            
+            return new RedirectResponse($this->generateUrl('calendar_home_page'));         
         }
         
         else{

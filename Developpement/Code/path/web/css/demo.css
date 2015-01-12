@@ -26,6 +26,12 @@ p {
 	display: none;
 }
 
+#event_delete_container, #about {
+	display: none;
+}
+
+
+
 #about_button_container {
 	position: absolute;
 	top: 1em;

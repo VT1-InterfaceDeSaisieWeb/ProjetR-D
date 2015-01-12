@@ -380,7 +380,7 @@
                  </div>
                                                  
                  <div id="event_delete_container">
-                     <form action="{{path('calendar_ajout_seance')}}" method="POST">
+                     <form action="{{path('calendar_supprimer_seance')}}" method="POST">
                          <input type="hidden" name="codeSeance">
                          <input type="hidden" />
                                  <ul><!--
@@ -397,6 +397,10 @@
                                          <li>
                                                  <label for="enseignement">Enseignement: </label><input type="text" name="enseignement" disabled="disabled">
                                                  
+                                         </li>
+                                         
+                                         <li>
+                                             <input type="hidden" name="codeSeance">
                                          </li>
                                          
                                          <li>
