@@ -47,4 +47,11 @@ calendar_ajout_enseignement:
     path:     /ajoutEnseignement
     defaults: { _controller: CalendarBundle:Index:ajoutEnseignement }
     
+calendar_gestion_compte:
+    path:     /gestionCompte
+    defaults: { _controller: CalendarBundle:Compte:compte }
 
+calendar_gestion_compte_maj_email:
+    path:     /majEmail
+    defaults: { _controller: CalendarBundle:Compte:majEmail }
+    

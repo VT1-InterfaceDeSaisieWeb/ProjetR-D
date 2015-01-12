@@ -1,0 +1,52 @@
+<html lang="en-US">
+<head>
+
+	<meta charset="utf-8">
+
+	<title>Gestion Compte VT</title>
+	<link rel="stylesheet" href="../css/login.css" />
+	<script type='text/javascript' src='../js/verif.js'></script>
+
+</head>
+
+<body>
+	
+	 <header> <h1> Visual Timetabling - Gestion du Compte</h1> </header>
+
+    <div id="account-form">
+
+        <h3>Informations du Compte VT</h3>
+
+        <fieldset>
+
+            <form method="PUT" action="{{path('calendar_gestion_compte_maj_email')}}" onsubmit="return verifFormCompte(this)">
+			{% for lvlsql in login %}
+                <p>
+                	<label for="nom" >Login</label></br>
+                	
+                		<input id="login" type="text" name="login" disabled="disabled" value="{{ lvlsql.login }}"/>
+                	
+                </p>
+                <p>
+                	<label for="email">Adresse e-mail actuel</label>
+                		<input id="oldemail" type="text" name="oldemail" disabled="disabled" value="{{ lvlsql.emailProf }}"/>
+                </p>
+                <p>
+                	<label for="email">Nouvelle adresse e-mail</label>
+                		<input id="newemail" type="email" name="newemail"/>
+                </p>
+                <input type="submit" value="Mise à jour de l'email" />
+                {% endfor %}
+                
+                 <footer class="clearfix">
+                    <p><span class="info"><-</span><a href="{{path('calendar_home_page')}}">Retour</a></p>
+                    <p><span class="info">?</span><a href="{{path('calendar_creation_compte_page')}}">Créer un nouveau compte</a></p>  
+                </footer>
+            </form>
+
+        </fieldset>
+
+    </div>
+
+</body>
+</html> 

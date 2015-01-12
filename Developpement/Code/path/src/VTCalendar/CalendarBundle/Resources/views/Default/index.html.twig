@@ -319,7 +319,15 @@
 	</head>
 
 	<header>
-            <h1>Visual Timetabling <a href="{{path('calendar_logout')}}" title="Déconnexion"><img id="logout-icon" title="Déconnexion" src="{{ asset('images/logout.png') }}" /></a></h1>
+            <h1>Visual Timetabling <a href="{{path('calendar_logout')}}" title="Déconnexion"><img id="logout-icon" title="Déconnexion" src="{{ asset('images/logout.png') }}" /></a>
+            	
+            	{% if msgmail == 1 %}
+            		<span id="emailno">Adresse mail non renseignée
+	 				<span id="infob" display="none">Si votre adresse n'est pas renseignée, vous ne pourrez pas récupérer votre mot de passe.</span></span>
+            	{% endif %}
+            	<a href="{{path('calendar_gestion_compte')}}" title="GestionCompte"><img id="account-settings" title="GestionCompte" src="{{ asset('images/Settings-02.png') }}" /></a>
+            
+            </h1>
             
 	</header>
 	

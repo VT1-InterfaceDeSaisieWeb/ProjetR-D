@@ -70,3 +70,22 @@ function verifForm(f)
    return true;
 
 }
+
+
+function verifFormCompte(f)
+{
+   var bres = true;
+   f.newemail.style.backgroundColor = "";
+   
+   if(f.newemail.value.length == 0){
+	   bres = false;
+	   f.newemail.style.backgroundColor = "#fba";
+   }
+   
+   if(!bres){
+	   alert("Veuillez renseigner la nouvelle adresse email.");
+	   return false;
+   }
+   return true;
+
+}
