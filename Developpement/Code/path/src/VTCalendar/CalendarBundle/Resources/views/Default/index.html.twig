@@ -57,6 +57,7 @@
                                  var $dialogContent = $("#event_edit_container");
                                  resetForm($dialogContent);
                                  var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
+                                 
                                  var endField = $dialogContent.find("select[name='end']").val(calEvent.end);
                                  //changement formulaire - choix enseignement / classe
                                  var enseignementField = $dialogContent.find("select[name='enseignement']");
@@ -87,8 +88,37 @@
                               eventResize : function(calEvent, $event) {
                               },
                               eventClick : function(calEvent, $event) {
+                                  
+                                 var $dialogContent = $("#event_delete_container");
+                                 resetForm($dialogContent);
+                                 var titleField = $dialogContent.find("input[name='enseignement']").val(calEvent.title);
+                                 var startField = $dialogContent.find("input[name='start']").val(calEvent.start);
+                                 var endField = $dialogContent.find("input[name='end']").val(calEvent.end);
+                                 var codeSeanceField = $dialogContent.find("input[name='codeSeance']").val(calEvent.id);
+                                 //changement formulaire - choix enseignement / classe
+                                 var enseignementField = $dialogContent.find("select[name='enseignement']");
+                                 var classeField = $dialogContent.find("select[name='classe']");
+                                 //var titleField = $dialogContent.find("input[name='title']");
+                                 //var bodyField = $dialogContent.find("textarea[name='body']");
 
-                                 if (calEvent.readOnly) {
+
+                                 $dialogContent.dialog({
+                                    modal: true,
+                                    title: "Supprimer la séance",
+                                    close: function() {
+                                       $dialogContent.dialog("destroy");
+                                       $dialogContent.hide();
+                                       $('#calendar').weekCalendar("removeUnsavedEvents");
+                                    },
+                                    buttons: {
+                                       
+                                    }
+                                 }).show();
+
+                                 $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));
+                                 setupStartAndEndTimeFields(startField, endField, calEvent, $calendar.weekCalendar("getTimeslotTimes", calEvent.start));
+
+                                 /*if (calEvent.readOnly) {
                                     return;
                                  }
 
@@ -107,7 +137,7 @@
                                  $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));
                                  setupStartAndEndTimeFields(startField, endField, calEvent, $calendar.weekCalendar("getTimeslotTimes", calEvent.start));
                                  $(window).resize().resize(); //fixes a bug in modal overlay size ??
-
+                                 */
                               },
                               eventMouseover : function(calEvent, $event) {
                               },
@@ -335,7 +365,7 @@
                                          
                                          <li>
                                                  <label for="start">Heure de début: </label><select name="start"><option value="">-- Sélectionner l'heure de début --</option></select>
-                                         </li>
+                                         </li>  
                                          
                                          <li>
                                                  <label for="commentaire">Commentaire: </label><input type="text" name="commentaire">
@@ -348,6 +378,50 @@
                                  </ul>
                          </form>
                  </div>
+                                                 
+                 <div id="event_delete_container">
+                     <form action="{{path('calendar_ajout_seance')}}" method="POST">
+                         <input type="hidden" name="codeSeance">
+                         <input type="hidden" />
+                                 <ul><!--
+                                         <li>
+                                                 <span>Date: </span><span class="date_holder"></span> 
+                                         </li>
+                                         -->
+                                         <li>
+                                             <select name="dateSeance">
+                                                 <option class="date_holder"></option>
+                                             </select>
+                                         </li>
+                                         
+                                         <li>
+                                                 <label for="enseignement">Enseignement: </label><input type="text" name="enseignement" disabled="disabled">
+                                                 
+                                         </li>
+                                         
+                                         <li>
+                                                 <label for="start">Heure de début: </label><input type="text" name="start" disabled="disabled">
+                                         </li>  
+                                         
+                                         <li>
+                                                 <label for="start">Heure de fin: </label><input type="text" name="end" disabled="disabled">
+                                         </li>  
+                                         
+                                         <li>
+                                                 <label for="commentaire">Commentaire: </label><input type="hidden" name="commentaire" disabled="disabled">
+                                         </li>
+                                         
+                                         <li>
+                                             <button type=submit>Valider</button>
+                                             <bud
+                                         </li>
+                                 </ul>
+                     </form>
+                 </div>
+                 
+                                                 
+                                                 
+                                                 
 
             </div>
             
