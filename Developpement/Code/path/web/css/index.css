@@ -400,6 +400,10 @@ word-wrap: break-word;
 	#formulaire_enseignement textarea:valid{
 		background-image:none;
 	}
+	
+#event_edit_container select:required{
+	background:url(required.gif) 91% center no-repeat;
+}
 
 .box {
 	-webkit-animation: cssAnimation 0.5s 1 ease;

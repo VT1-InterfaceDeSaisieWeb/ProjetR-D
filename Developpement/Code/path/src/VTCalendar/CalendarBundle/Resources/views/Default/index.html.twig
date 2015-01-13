@@ -340,7 +340,7 @@
 
 
                      <div id="event_edit_container">
-                         <form action="{{path('calendar_ajout_seance')}}" method="POST">
+                         <form action="{{path('calendar_ajout_seance')}}" method="POST" onsubmit="return verifFormSeance(this)">
                                  <input type="hidden" />
                                  <ul><!--
                                          <li>
@@ -356,7 +356,8 @@
                                          <li>
                                                  <label for="enseignement">Enseignement: </label>
                                                  
-                                                 <select name="enseignement"><option disabled selected>-- Sélectionner un enseignement-- </option>
+                                                 <select id="lstens" name="enseignement" required>
+                                                 	<option value="-1" disabled selected>-- Sélectionner un enseignement-- </option>
                                                       {% for enssql in lstSqlEnseignement %}
                                                           <option value="{{ enssql.codeEnseignement }}">{{ enssql.nom }}</option>
                                                       {% endfor %}
@@ -372,8 +373,7 @@
                                          </li>
                                          
                                          <li>
-                                             <button type=submit>Valider</button>
-                                             <bud
+                                             <button type="submit">Valider</button>
                                          </li>
                                  </ul>
                          </form>

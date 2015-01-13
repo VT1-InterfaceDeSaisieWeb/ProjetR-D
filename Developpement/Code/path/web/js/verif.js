@@ -72,6 +72,24 @@ function verifForm(f)
 }
 
 
+function verifFormSeance(f)
+{
+   var bres = true;
+   f.lstens.style.backgroundColor = "";
+   
+   if(f.lstens.value == "-1"){
+	   bres = false;
+	   f.lstens.style.backgroundColor = "#fba";
+   }
+	      
+   if(!bres){
+	   alert("Veuillez remplir correctement le champ surligné en rouge.");
+	   return false;
+   }
+   return true;
+
+}
+
 function verifFormCompte(f)
 {
    var bres = true;
