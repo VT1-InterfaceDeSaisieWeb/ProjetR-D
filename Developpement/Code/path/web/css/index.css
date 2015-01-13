@@ -279,20 +279,18 @@ word-wrap: break-word;
 	text-align:center;
 }
 
-#formulaire_matiere button{
+#formulaire_matiere input[type="submit"]{
 	background: #1dabb8;
 	border-radius: 3px;
 	color: #fff;
-	margin: 10px 70px;
+	margin: 10px 135px;
 	font-weight: bold;
 	margin-top: 20px;
 	padding: 10px 20px;
-	margin-left: 130px;
+        border:0!important;
 }
 
-#formulaire_matiere button:hover{
-	background: #198d98;
-}
+#formulaire_matiere input[type="submit"]:hover { background: #198d98; }
 
 .matiere_clearfix p {
 	margin-left: 155px;
@@ -321,20 +319,18 @@ word-wrap: break-word;
 	text-align:center;
 }
 
-#formulaire_enseignement button{
+#formulaire_enseignement input[type="submit"]{
 	background: #1dabb8;
 	border-radius: 3px;
 	color: #fff;
-	margin: 10px 70px;
+	margin: 10px 160px;
 	font-weight: bold;
 	margin-top: 20px;
 	padding: 10px 20px;
-	margin-left: 160px;
+        border:0!important;
 }
 
-#formulaire_enseignement button:hover{
-	background: #198d98;
-}
+#formulaire_enseignement input[type="submit"]:hover { background: #198d98; }
 
 	#formulaire_enseignement input  + span{
 		display: none;

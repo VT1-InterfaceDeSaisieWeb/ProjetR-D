@@ -95,6 +95,7 @@
                                  var startField = $dialogContent.find("input[name='start']").val(calEvent.start);
                                  var endField = $dialogContent.find("input[name='end']").val(calEvent.end);
                                  var codeSeanceField = $dialogContent.find("input[name='codeSeance']").val(calEvent.id);
+                                 var salleField = $dialogContent.find("input[name='salle']").val(calEvent.id);
                                  //changement formulaire - choix enseignement / classe
                                  var enseignementField = $dialogContent.find("select[name='enseignement']");
                                  var classeField = $dialogContent.find("select[name='classe']");
@@ -296,11 +297,20 @@
                                                         
 						}
 				}
-                                
-                                
-                                
-                               
+      
 		</script>
+                
+                <script>
+                    function BlockVisibility(blockId1){
+
+			var targetBlock = document.getElementById(blockId1);
+			
+				if (targetBlock.style.display == "none"){
+					targetBlock.style.display = "";
+				}
+                    }
+                    
+                </script>
     
 		
 	</head>
@@ -365,15 +375,42 @@
                                          </li>
                                          
                                          <li>
+                                                <label for="yes">Ajouter un groupe à la séance</label> <input type="radio" name="products" value="yes" id="yes" onclick="BlockVisibility('ressource_groupes');" />
+                                         </li>
+                                         
+                                         <li id="ressource_groupes" style="display: none">
+                                             
+                                                 <select name="groupes"><option value="0" disabled selected>-- Sélectionner un groupe -- </option>
+                                                      {% for enssql in lstSqlGroupes %}
+                                                          <option value="{{ enssql.codeGroupe }}">{{ enssql.nom }}</option>
+                                                      {% endfor %}
+                                                 </select>
+                                         </li>
+                                         
+                                         <li>
+                                                <label for="salles">Salle: </label>
+                                                 <select name="salles"><option disabled selected>-- Sélectionner une salle -- </option>
+                                                      {% for enssql in lstSqlSalles %}
+                                                          <option value="{{ enssql.codeSalle }}">{{ enssql.nom }}</option>
+                                                      {% endfor %}
+                                                 </select>
+                                         </li>
+                                         
+                                         
+                                         <li>
                                                  <label for="start">Heure de début: </label><select name="start"><option value="">-- Sélectionner l'heure de début --</option></select>
-                                         </li>  
+                                         </li> 
                                          
                                          <li>
                                                  <label for="commentaire">Commentaire: </label><input type="text" name="commentaire">
                                          </li>
                                          
                                          <li>
+<<<<<<< HEAD
+                                             <button type=submit>Valider</button>
+=======
                                              <button type="submit">Valider</button>
+>>>>>>> 4056c7b4013f5a7520006972d9476fbe193a6516
                                          </li>
                                  </ul>
                          </form>
@@ -400,6 +437,10 @@
                                          </li>
                                          
                                          <li>
+                                             <label for="enseignement">Enseignement: </label><input type="text" name="salle" disabled="disabled">
+                                         </li>
+                                         
+                                         <li>
                                              <input type="hidden" name="codeSeance">
                                          </li>
                                          
@@ -412,12 +453,11 @@
                                          </li>  
                                          
                                          <li>
-                                                 <label for="commentaire">Commentaire: </label><input type="hidden" name="commentaire" disabled="disabled">
+                                              <!--   <label for="commentaire">Commentaire: </label><input type="hidden" name="commentaire" disabled="disabled">-->
                                          </li>
                                          
                                          <li>
-                                             <button type=submit>Valider</button>
-                                             <bud
+                                             <button type=submit>Supprimer</button>
                                          </li>
                                  </ul>
                      </form>
@@ -444,7 +484,7 @@
                                  </ol>
                          </fieldset>
                          <fieldset>
-                                 <button type=submit>Valider</button>
+                             <input type=submit value="Valider">
                          </fieldset>
                          <footer class="matiere_clearfix">
                     		<p>
@@ -586,7 +626,7 @@
                                  </ol>
                          </fieldset>
                          <fieldset>
-                                 <button type="submit">Valider</button>
+                                 <input type=submit value="Valider">
                          </fieldset>
 						<footer class="clearfix">
                     		<p>

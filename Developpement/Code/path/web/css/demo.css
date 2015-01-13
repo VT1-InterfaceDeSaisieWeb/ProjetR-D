@@ -30,6 +30,32 @@ p {
 	display: none;
 }
 
+#event_edit_container button {
+	background: #1dabb8;
+	border-radius: 3px;
+	color: #fff;
+	margin: 10px 80px;
+	font-weight: bold;
+	margin-top: 20px;
+	padding: 10px 20px;
+        border:0!important;
+}
+
+#event_edit_container button:hover { background: #198d98; }
+
+#event_delete_container button {
+	background: #1dabb8;
+	border-radius: 3px;
+	color: #fff;
+	margin: 10px 65px;
+	font-weight: bold;
+	margin-top: 20px;
+	padding: 10px 20px;
+        border:0!important;
+}
+
+#event_delete_container button:hover { background: #198d98;}
+
 
 
 #about_button_container {
