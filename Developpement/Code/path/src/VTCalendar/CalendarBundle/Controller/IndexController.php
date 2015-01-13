@@ -19,18 +19,11 @@ class IndexController extends Controller
             $conn = $this->get('database_connection');
             
             //Requête pour permettre l'affichage des séances pour un prof connecté
-<<<<<<< .merge_file_mOf74Y
             $event = $conn->fetchAll('  SELECT DISTINCT seances.codeSeance, seances.dateSeance, seances.heureSeance, seances.dureeSeance, seances.Commentaire, enseignements.nom 
                                         FROM enseignements, seances
                                         WHERE enseignements.codeEnseignement = seances.codeEnseignement 
                                         AND seances.deleted = 0'
                                     );
-=======
-            $event = $conn->fetchAll('  SELECT seances.codeSeance, seances.dateSeance, seances.heureSeance, seances.dureeSeance, seances.Commentaire, enseignements.nom 
-                                        FROM enseignements, seances
-                                        WHERE enseignements.codeEnseignement = seances.codeEnseignement 
-                                        ');
->>>>>>> .merge_file_XXkcuK
             
             // Requêtes pour liste déroulante - formulaire Enseignement
             $sqlmatiere = $conn->fetchAll('SELECT MATIERES.codeMatiere, MATIERES.nom FROM MATIERES ORDER BY MATIERES.nom');
@@ -39,12 +32,9 @@ class IndexController extends Controller
             $sqltypesalle = $conn->fetchAll('SELECT TYPES_SALLES.codeTypeSalle, TYPES_SALLES.nom FROM TYPES_SALLES ORDER BY TYPES_SALLES.nom');
             $sqlcomposante = $conn->fetchAll('SELECT COMPOSANTES.codeComposante, COMPOSANTES.nom FROM COMPOSANTES');
             $sqltypeactivite = $conn->fetchAll('SELECT TYPES_ACTIVITES.codeTypeActivite, TYPES_ACTIVITES.nom FROM TYPES_ACTIVITES ORDER BY TYPES_ACTIVITES.nom');
-<<<<<<< .merge_file_mOf74Y
             $sqlgroupeenseignement = $conn->fetchAll('SELECT codeGroupe, nom FROM ressources_groupes ORDER BY nom');
             $sqlsalles = $conn->fetchAll('SELECT DISTINCT codeSalle, nom FROM ressources_salles ORDER BY nom');
-=======
-            
->>>>>>> .merge_file_XXkcuK
+
             $sqlemail = $conn->executeQuery('SELECT emailProf
             							FROM LOGIN_PROF
             							WHERE codeProf = ?', array($user));
@@ -58,11 +48,7 @@ class IndexController extends Controller
              
              // Requêtes pour liste déroulante - formulaire Séance
             $sqlenseignement = $conn->fetchAll('SELECT enseignements.codeEnseignement, enseignements.nom FROM enseignements');
-<<<<<<< .merge_file_mOf74Y
             return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event, 'lstSqlMatiere' => $sqlmatiere, 'lstSqlZoneSalle' => $sqlzonesalle, 'lstSqlNiveau' => $sqlniveau, 'lstSqlType' => $sqltypesalle, 'lstSqlEnseignement' => $sqlenseignement, 'lstSqlComposante' => $sqlcomposante, 'lstSqlTypeActivite' => $sqltypeactivite, 'msgmail' => $nomail, 'lstSqlGroupes' => $sqlgroupeenseignement, 'lstSqlSalles' => $sqlsalles));
-=======
-            return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event, 'lstSqlMatiere' => $sqlmatiere, 'lstSqlZoneSalle' => $sqlzonesalle, 'lstSqlNiveau' => $sqlniveau, 'lstSqlType' => $sqltypesalle, 'lstSqlEnseignement' => $sqlenseignement, 'lstSqlComposante' => $sqlcomposante, 'lstSqlTypeActivite' => $sqltypeactivite, 'msgmail' => $nomail));
->>>>>>> .merge_file_XXkcuK
             
             
         }
@@ -214,20 +200,14 @@ class IndexController extends Controller
             $updateDureeTotale = $dureeTotaleEnseignement['dureeTotale'] + $seance['dureeSeance'];
             
             
-<<<<<<< .merge_file_mOf74Y
-            
             $conn->executeQuery('UPDATE seances SET deleted = 1 WHERE codeSeance = ?', array($request->get('codeSeance')));
             $conn->executeQuery('UPDATE seances_profs SET deleted = 1 WHERE codeSeance = ?', array($request->get('codeSeance')));
             $conn->executeQuery('UPDATE seances_salles SET deleted = 1 WHERE codeSeance = ?', array($request->get('codeSeance')));
-            $conn->executeQuery('UPDATE seances SET deleted = 1 WHERE codeSeance = ?', array($request->get('codeSeance')));
-=======
-            $conn->executeQuery('DELETE FROM seances WHERE codeSeance = ?', array($request->get('codeSeance')));
->>>>>>> .merge_file_XXkcuK
+            
             $conn->executeQuery('UPDATE enseignements SET dureeTotale = ? WHERE codeEnseignement = ?', array($updateDureeTotale, $seance['codeEnseignement']));
             
             return new RedirectResponse($this->generateUrl('calendar_home_page'));         
         }
-        
         else{
             return new RedirectResponse($this->generateUrl('calendar_home_page'));         
         }
