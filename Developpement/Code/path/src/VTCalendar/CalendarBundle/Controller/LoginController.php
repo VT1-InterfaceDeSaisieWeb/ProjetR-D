@@ -31,8 +31,9 @@ class LoginController extends Controller
             }   
             
             else{
-        
-                 return $this->render('CalendarBundle:Default:login.html.twig');
+            	
+            	echo "<script>alert(\"La connexion a échoué. Veuillez entrer à nouveau vos identifiants.\")</script>";
+                return $this->render('CalendarBundle:Default:login.html.twig');
             }
         }
         
