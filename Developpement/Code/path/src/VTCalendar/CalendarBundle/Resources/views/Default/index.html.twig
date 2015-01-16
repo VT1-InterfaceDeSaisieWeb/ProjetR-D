@@ -343,9 +343,21 @@
                                          </ul>
                                  </nav>
 
+                    <div id="filtre">
+                        
+                        <form action="{{path('calendar_home_page')}}" method="POST">
+                            <button type=submit>Mes séances</button>
+                        </form>
+                        <form action="{{path('calendar_home_page_filtre')}}" method="POST">   
+                            <button type=submit>Toutes les séances</button>
+                        </form>
+                              
+                    </div>
+                    
+                    
+                    
 
-                                 <div id="calendar" style="z-index: 1">
-                                 </div>
+                                 <div id="calendar" style="z-index: 1"></div>
                 </div>
 
 
@@ -406,8 +418,20 @@
                                          </li>
                                          
                                          <li>
+
                                              <button type="submit">Valider</button>
+
+                                             <button type=submit>Valider</button>
+                                             
+
                                          </li>
+                                         
+                                         
+                                         <footer class="clearfix">
+                                            <p>
+                                                <a href="{{path('calendar_home_page')}}">Retour</a>
+                                            </p>
+                                        </footer>
                                  </ul>
                          </form>
                  </div>
@@ -453,8 +477,19 @@
                                          </li>
                                          
                                          <li>
+
                                              <button type=submit>Supprimer</button>
+
+                                             <button type=submit>Valider</button>
+                                            
+
                                          </li>
+                                         
+                                         <footer class="clearfix">
+                                            <p>
+                                                <a href="{{path('calendar_home_page')}}">Retour</a>
+                                            </p>
+                                        </footer>
                                  </ul>
                      </form>
                  </div>

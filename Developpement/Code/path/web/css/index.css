@@ -8,6 +8,11 @@
 	-webkit-transform: rotate(-90deg);
 }
 
+a {
+color: #428bca!important;
+text-decoration: none!important;
+}
+
 
 body{
 	overflow-y:hidden;
@@ -410,4 +415,11 @@ word-wrap: break-word;
 
 .clearfix p {
 	margin-left: 180px;
+}
+
+#filtre {
+    
+    margin-left: 235px;
+    
+    
 }

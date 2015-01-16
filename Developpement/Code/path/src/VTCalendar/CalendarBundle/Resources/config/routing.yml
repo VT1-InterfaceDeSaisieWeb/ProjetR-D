@@ -35,9 +35,15 @@ calendar_logout:
     path:     /logout
     defaults: { _controller: CalendarBundle:Login:logout }
 
+#affichage page d'acceuil avec seulement les séances du prof
 calendar_home_page:
     path:     /accueil
     defaults: { _controller: CalendarBundle:Index:index }
+ 
+#affichage page d'acceuil avec toutes les séances de la BD
+calendar_home_page_filtre:
+    path:     /accueilFiltre
+    defaults: { _controller: CalendarBundle:Index:filtre }
 
 calendar_ajout_matiere:
     path:     /ajoutMatiere
