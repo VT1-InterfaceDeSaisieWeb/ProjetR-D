@@ -31,11 +31,19 @@ h1 {
 h3 { margin: 0; }
 
 a {
-	color: #999;
+	color: #428bca;
 	text-decoration: none;
 }
 
 a:hover { color: #1dabb8; }
+
+#retourGestionCompte{
+    margin-left: 70px;
+}
+
+#retourGestionCompte2{
+    margin-left: 100px;
+}
 
 fieldset {
 	border: none;

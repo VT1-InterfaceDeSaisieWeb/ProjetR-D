@@ -101,7 +101,9 @@ class LoginController extends Controller
     // Fonction d'affichage de la page de changement de mot de passe
     public function affichageChangementMdpAction(){
         $error = 0;
-        return $this->render('CalendarBundle:Default:changementMdp.html.twig', array('error' => $error));
+        $session = new Session();
+        $user = $session->get('user_id');
+        return $this->render('CalendarBundle:Default:changementMdp.html.twig', array('error' => $error, 'userId' => $user));
     }
     
     
@@ -110,34 +112,51 @@ class LoginController extends Controller
       
       // connection à la BD
       $conn = $this->get('database_connection');
+      $session = new Session();
       
       //récupération du nouveau mot de passe entré
       $newMdp = $request->get('newPass');
       $cNewMdp = $request->get('confirmPass');
       
-      //vérification si les 2 corréespondent
-      if ($newMdp != $cNewMdp) {
-        $error = 1;
-	return $this->render('CalendarBundle:Default:changementMdp.html.twig', array('error' => $error));
+      if($session->get('user_id') != null){
+          
+          $user = $session->get('user_id');
+          if ($newMdp != $cNewMdp) {
+            $error = 1;
+            return $this->render('CalendarBundle:Default:changementMdp.html.twig', array('error' => $error));
+          }
+          
+          else{
+             $conn->executeQuery('UPDATE login_prof SET motPasse = ? WHERE codeProf = ?', array(md5($newMdp), $user));
+             return new RedirectResponse($this->generateUrl('calendar_gestion_compte')); 
+          }
       }
       
       else{
-          
-          $sqlUsers = $conn->executeQuery('SELECT codeProf FROM login_prof');
-          $allUsers = $sqlUsers->fetchAll();
-          
-          foreach($allUsers as $user){
-              if(md5($user['codeProf']) == $request->get('userId')){
-                  $userId = $user['codeProf'];
-                  break;
-              }
-          }
-          
-           $conn->executeQuery('UPDATE login_prof SET motPasse = ? WHERE codeProf = ?', array(md5($newMdp), $userId));
-           return new RedirectResponse($this->generateUrl('calendar_login_page'));
-      }
-      
-    }  
+      //vérification si les 2 corréespondent
+        if ($newMdp != $cNewMdp) {
+          $error = 1;
+          return $this->render('CalendarBundle:Default:changementMdp.html.twig', array('error' => $error));
+        }
+
+        else{
+
+            $sqlUsers = $conn->executeQuery('SELECT codeProf FROM login_prof');
+            $allUsers = $sqlUsers->fetchAll();
+
+            foreach($allUsers as $user){
+                if(md5($user['codeProf']) == $request->get('userId')){
+                    $userId = $user['codeProf'];
+                    break;
+                }
+            }
+
+             $conn->executeQuery('UPDATE login_prof SET motPasse = ? WHERE codeProf = ?', array(md5($newMdp), $userId));
+             return new RedirectResponse($this->generateUrl('calendar_login_page'));
+        }
+
+      }  
+    }
     
      
     // Fonction d'affichage de la page de création d'un compte utilisateur
