@@ -33,7 +33,7 @@
                               allowCalEventOverlap : true,
                               overlapEventsSeparate: true,
                               firstDayOfWeek : 1,
-                              businessHours :{start: 8, end: 18, limitDisplay: true },
+                              businessHours :{start: 8, end: 21, limitDisplay: true },
                               daysToShow : 7,
                               height : function($calendar) {
                                  return $(window).height() - $("h1").outerHeight() - 1;
@@ -95,7 +95,7 @@
                                  var startField = $dialogContent.find("input[name='start']").val(calEvent.start);
                                  var endField = $dialogContent.find("input[name='end']").val(calEvent.end);
                                  var codeSeanceField = $dialogContent.find("input[name='codeSeance']").val(calEvent.id);
-                                 var salleField = $dialogContent.find("input[name='salle']").val(calEvent.id);
+                                 //var salleField = $dialogContent.find("input[name='salle']").val(calEvent.salle);
                                  //changement formulaire - choix enseignement / classe
                                  var enseignementField = $dialogContent.find("select[name='enseignement']");
                                  var classeField = $dialogContent.find("select[name='classe']");
@@ -105,7 +105,11 @@
 
                                  $dialogContent.dialog({
                                     modal: true,
+                                    {% if displayAll ==1 %}
+                                    title: "Détail de la séance",
+                                    {% else %}
                                     title: "Supprimer la séance",
+                                    {% endif %}
                                     close: function() {
                                        $dialogContent.dialog("destroy");
                                        $dialogContent.hide();
@@ -179,7 +183,7 @@
                                        "start": new Date("{{event.dateSeance|slice(0, 4)}}", "{{event.dateSeance|slice(5, 2) - 1}}", "{{event.dateSeance|slice(8, 2)}}", "{{event.heureSeance|slice(0, 2)}}", "{{event.heureSeance|slice(2, 2)}}"),
                                        "end": new Date("{{event.dateSeance|slice(0, 4)}}", "{{event.dateSeance|slice(5, 2) - 1}}", "{{event.dateSeance|slice(8, 2)}}", "{{event.heureSeance|slice(0, 2) + event.dureeSeance|slice(0, 1)}}", "{{event.heureSeance|slice(2, 2) + event.dureeSeance|slice(1, 2)}}"),
                                        {% endif %}
-                                       "title":"{{event.nom}}"
+                                       "title":"{{event.nom}}" 
                                       
                                       },
                                                 
@@ -311,6 +315,25 @@
                     }
                     
                 </script>
+                
+                
+                {% if errorGroupe is defined and errorGroupe == 1%}
+                    <script>
+                        alert("La séance n\'a pas été créé car le groupe que vous souhaitiez ajouter a déjà une séance à ce moment là.");
+                    </script>
+                    
+                {% elseif errorSalle is defined and errorSalle == 1 %}
+                    <script>
+                        alert("La séance n\'a pas été créé car la salle que vous souhaitiez est déjà prise à ce moment là.");
+                    </script>
+                    
+                {% endif %}
+                
+                
+                
+                
+                
+                
     
 		
 	</head>
@@ -346,10 +369,10 @@
                     <div id="filtre">
                         
                         <form action="{{path('calendar_home_page')}}" method="POST">
-                            <button type=submit>Mes séances</button>
+                            <input type="submit" value="Mes séances">
                         </form>
                         <form action="{{path('calendar_home_page_filtre')}}" method="POST">   
-                            <button type=submit>Toutes les séances</button>
+                            <input type="submit" value="Toutes les séances">
                         </form>
                               
                     </div>
@@ -421,9 +444,6 @@
 
                                              <button type="submit">Valider</button>
 
-                                             <button type=submit>Valider</button>
-                                             
-
                                          </li>
                                          
                                          
@@ -456,9 +476,7 @@
                                                  
                                          </li>
                                          
-                                         <li>
-                                             <label for="enseignement">Enseignement: </label><input type="text" name="salle" disabled="disabled">
-                                         </li>
+                                         
                                          
                                          <li>
                                              <input type="hidden" name="codeSeance">
@@ -476,15 +494,11 @@
                                               <!--   <label for="commentaire">Commentaire: </label><input type="hidden" name="commentaire" disabled="disabled">-->
                                          </li>
                                          
+                                         {% if displayAll == 0 %}
                                          <li>
-
                                              <button type=submit>Supprimer</button>
-
-                                             <button type=submit>Valider</button>
-                                            
-
                                          </li>
-                                         
+                                         {% endif %}
                                          <footer class="clearfix">
                                             <p>
                                                 <a href="{{path('calendar_home_page')}}">Retour</a>

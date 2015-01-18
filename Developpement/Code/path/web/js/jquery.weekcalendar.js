@@ -282,8 +282,8 @@
          	var months = ["Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
 
          	
-         	actualMonth = "<div id=\"actualMonth\"><h1>"+months[actualMonth]+"</h1></div>";
-         	$(	actualMonth).appendTo($calendarContainer);
+         	/*actualMonth = "<div id=\"actualMonth\"><h1>"+months[actualMonth]+"</h1></div>";
+         	$(	actualMonth).appendTo($calendarContainer);*/
             calendarNavHtml = "<div class=\"wc-nav\">\
                     <button class=\"wc-prev\">" + options.buttonText.lastWeek + "</button>\
                     <button class=\"wc-today\">" + options.buttonText.today + "</button>\
@@ -1312,7 +1312,7 @@
          timeSeparator : " à ",
          startParam : "start",
          endParam : "end",
-         businessHours : {start: 8, end: 18, limitDisplay : false},
+         businessHours : {start: 8, end: 21, limitDisplay : false},
          newEventText : "New Event",
          timeslotHeight: 20,
          defaultEventLength : 2,

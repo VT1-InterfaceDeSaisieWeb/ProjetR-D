@@ -29,5 +29,5 @@ assetic:
 
 swiftmailer:
     transport: gmail
-    username: christelle.ayangma@gmail.com
-    password: Kritouni19607*
+    username: mail
+    password: mdp
