@@ -41,6 +41,7 @@ class IndexController extends Controller
             $sqlsalles = $conn->fetchAll('SELECT DISTINCT codeSalle, nom FROM ressources_salles ORDER BY nom');
             $seancesSalles = $conn->fetchAll('SELECT codeSeance, codeRessource FROM seances_salles');
             $seancesGroupes = $conn->fetchAll('SELECT codeSeance, codeRessource FROM seances_groupes');
+            $ressourcesProfs = $conn->fetchALL('SELECT codeProf, nom, prenom FROM ressources_profs ORDER BY nom');
 
             $sqlemail = $conn->executeQuery('SELECT emailProf
             							FROM LOGIN_PROF
@@ -57,7 +58,7 @@ class IndexController extends Controller
              
              // Requêtes pour liste déroulante - formulaire Séance
             $sqlenseignement = $conn->fetchAll('SELECT DISTINCT enseignements.codeEnseignement, enseignements.nom FROM enseignements, enseignements_profs, ressources_profs, login_prof WHERE enseignements.codeEnseignement = enseignements_profs.codeEnseignement AND login_prof.codeProf = ressources_profs.codeProf AND ressources_profs.codeProf = enseignements_profs.codeRessource AND login_prof.codeProf = ? ', array($user));
-            return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event, 'lstSqlMatiere' => $sqlmatiere, 'lstSqlZoneSalle' => $sqlzonesalle, 'lstSqlNiveau' => $sqlniveau, 'lstSqlType' => $sqltypesalle, 'lstSqlEnseignement' => $sqlenseignement, 'lstSqlComposante' => $sqlcomposante, 'lstSqlTypeActivite' => $sqltypeactivite, 'msgmail' => $nomail, 'lstSqlGroupes' => $sqlgroupeenseignement, 'lstSqlSalles' => $sqlsalles, 'displayAll' => $displayAll, 'seancesSalles' => $seancesSalles, '$seancesGroupes' => $seancesGroupes));
+            return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event, 'lstSqlMatiere' => $sqlmatiere, 'lstSqlZoneSalle' => $sqlzonesalle, 'lstSqlNiveau' => $sqlniveau, 'lstSqlType' => $sqltypesalle, 'lstSqlEnseignement' => $sqlenseignement, 'lstSqlComposante' => $sqlcomposante, 'lstSqlTypeActivite' => $sqltypeactivite, 'msgmail' => $nomail, 'lstSqlGroupes' => $sqlgroupeenseignement, 'lstSqlSalles' => $sqlsalles, 'displayAll' => $displayAll, 'seancesSalles' => $seancesSalles, '$seancesGroupes' => $seancesGroupes, 'ressourcesProfs' => $ressourcesProfs));
             
             
         }
@@ -96,6 +97,7 @@ class IndexController extends Controller
             $sqlsalles = $conn->fetchAll('SELECT DISTINCT codeSalle, nom FROM ressources_salles ORDER BY nom');
             $seancesSalles = $conn->fetchAll('SELECT codeSeance, codeRessource FROM seances_salles');
             $seancesGroupes = $conn->fetchAll('SELECT codeSeance, codeRessource FROM seances_groupes');
+            $ressourcesProfs = $conn->fetchALL('SELECT codeProf, nom, prenom FROM ressources_profs ORDER BY nom');
             $sqlemail = $conn->executeQuery('SELECT emailProf
             							FROM LOGIN_PROF
             							WHERE codeProf = ?', array($user));
@@ -110,8 +112,8 @@ class IndexController extends Controller
             $displayAll = 1;
             
              // Requêtes pour liste déroulante - formulaire Séance
-            $sqlenseignement = $conn->fetchAll('SELECT enseignements.codeEnseignement, enseignements.nom FROM enseignements, enseignements_profs WHERE enseignements.codeEnseignement = enseignements_profs.codeEnseignement');
-            return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event, 'lstSqlMatiere' => $sqlmatiere, 'lstSqlZoneSalle' => $sqlzonesalle, 'lstSqlNiveau' => $sqlniveau, 'lstSqlType' => $sqltypesalle, 'lstSqlEnseignement' => $sqlenseignement, 'lstSqlComposante' => $sqlcomposante, 'lstSqlTypeActivite' => $sqltypeactivite, 'msgmail' => $nomail, 'lstSqlGroupes' => $sqlgroupeenseignement, 'lstSqlSalles' => $sqlsalles, 'displayAll' => $displayAll, 'seancesSalles' => $seancesSalles, '$seancesGroupes' => $seancesGroupes));
+            $sqlenseignement = $conn->fetchAll('SELECT DISTINCT enseignements.codeEnseignement, enseignements.nom FROM enseignements, enseignements_profs, ressources_profs, login_prof WHERE enseignements.codeEnseignement = enseignements_profs.codeEnseignement AND login_prof.codeProf = ressources_profs.codeProf AND ressources_profs.codeProf = enseignements_profs.codeRessource AND login_prof.codeProf = ? ', array($user));
+            return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event, 'lstSqlMatiere' => $sqlmatiere, 'lstSqlZoneSalle' => $sqlzonesalle, 'lstSqlNiveau' => $sqlniveau, 'lstSqlType' => $sqltypesalle, 'lstSqlEnseignement' => $sqlenseignement, 'lstSqlComposante' => $sqlcomposante, 'lstSqlTypeActivite' => $sqltypeactivite, 'msgmail' => $nomail, 'lstSqlGroupes' => $sqlgroupeenseignement, 'lstSqlSalles' => $sqlsalles, 'displayAll' => $displayAll, 'seancesSalles' => $seancesSalles, '$seancesGroupes' => $seancesGroupes, 'ressourcesProfs' => $ressourcesProfs));
             
             
         }
@@ -169,15 +171,31 @@ class IndexController extends Controller
             $codeProprietaire = 777;
             $composante = $request->get('composante');
             $typeActivite = $request->get('typeactivite');
+            $prof = $request->get('prof');
 
-            $sql = "INSERT INTO enseignements(nom, codeMatiere, dureeTotale, dureeSeance, alias, codeTypeSalle, codeZoneSalle, nbSeancesHebdo, 
+            /*$sql = "INSERT INTO enseignements(nom, codeMatiere, dureeTotale, dureeSeance, alias, codeTypeSalle, codeZoneSalle, nbSeancesHebdo, 
                     dateDebut, dateFin, identifiant, commentaire, dateCreation, codeNiveau, codeProprietaire, codeComposante, codeTypeActivite) VALUES('$nom', '$codeMatiere', 
                     '$dureeTotale', '$dureeSeance', '$alias', '$codeTypeSalle', '$codeZoneSalle', '$nbSeancesHebdo', '$dateDebut', '$dateFin', 
                     '$identifiant', '$commentaires', '$dateCreation', '$codeNiveau', '$codeProprietaire', '$composante', '$typeActivite')";
+           
+            $requete = mysql_query($sql, $connection) or die( mysql_error() );*/
             
-            $requete = mysql_query($sql, $connection) or die( mysql_error() );
+            $conn = $this->get('database_connection');
             
-            echo "ajouté !!";
+            $conn->executeQuery('INSERT INTO enseignements(nom, codeMatiere, dureeTotale, dureeSeance, alias, codeTypeSalle, codeZoneSalle, nbSeancesHebdo, 
+                    dateDebut, dateFin, identifiant, commentaire, dateCreation, codeNiveau, codeProprietaire, codeComposante, codeTypeActivite) VALUES(?, ?, 
+                    ?, ?, ?, ?, ?, ?, ?, ?, 
+                    ?, ?, ?, ?, ?, ?, ?)', array($nom, $codeMatiere, $dureeTotale, $dureeSeance, $alias, $codeTypeSalle, $codeZoneSalle, $nbSeancesHebdo, $dateDebut, $dateFin, $identifiant, $commentaires, $dateCreation, $codeNiveau, $codeProprietaire, $composante, $typeActivite));
+            
+            $selectLastIdInserted = $conn->executeQuery('SELECT LAST_INSERT_ID() as lastId FROM enseignements');
+            $lastIdInserted = $selectLastIdInserted->fetch();
+            
+            $conn->executeQuery('INSERT INTO enseignements_profs(codeEnseignement, codeRessource, deleted) VALUES (?, ?, 0)', array($lastIdInserted['lastId'], $prof));
+            
+            
+            
+            
+            
             return new RedirectResponse($this->generateUrl('calendar_home_page'));
             
         }
@@ -255,6 +273,7 @@ class IndexController extends Controller
                             $sqlsalles = $conn->fetchAll('SELECT DISTINCT codeSalle, nom FROM ressources_salles ORDER BY nom');
                             $seancesSalles = $conn->fetchAll('SELECT codeSeance, codeRessource FROM seances_salles');
                             $seancesGroupes = $conn->fetchAll('SELECT codeSeance, codeRessource FROM seances_groupes');
+                            $ressourcesProfs = $conn->fetchALL('SELECT codeProf, nom, prenom FROM ressources_profs ORDER BY nom');
                             $sqlemail = $conn->executeQuery('SELECT emailProf
                                                                                 FROM LOGIN_PROF
                                                                                 WHERE codeProf = ?', array($user));
@@ -269,8 +288,8 @@ class IndexController extends Controller
                             $displayAll = 0;
 
                              // Requêtes pour liste déroulante - formulaire Séance
-                            $sqlenseignement = $conn->fetchAll('SELECT enseignements.codeEnseignement, enseignements.nom FROM enseignements, enseignements_profs WHERE enseignements.codeEnseignement = enseignements_profs.codeEnseignement');
-                            return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event, 'lstSqlMatiere' => $sqlmatiere, 'lstSqlZoneSalle' => $sqlzonesalle, 'lstSqlNiveau' => $sqlniveau, 'lstSqlType' => $sqltypesalle, 'lstSqlEnseignement' => $sqlenseignement, 'lstSqlComposante' => $sqlcomposante, 'lstSqlTypeActivite' => $sqltypeactivite, 'msgmail' => $nomail, 'lstSqlGroupes' => $sqlgroupeenseignement, 'lstSqlSalles' => $sqlsalles, 'displayAll' => $displayAll, 'errorGroupe' => $errorGroupe, 'seancesSalles' => $seancesSalles, '$seancesGroupes' => $seancesGroupes));
+                            $sqlenseignement = $conn->fetchAll('SELECT DISTINCT enseignements.codeEnseignement, enseignements.nom FROM enseignements, enseignements_profs, ressources_profs, login_prof WHERE enseignements.codeEnseignement = enseignements_profs.codeEnseignement AND login_prof.codeProf = ressources_profs.codeProf AND ressources_profs.codeProf = enseignements_profs.codeRessource AND login_prof.codeProf = ? ', array($user));
+                            return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event, 'lstSqlMatiere' => $sqlmatiere, 'lstSqlZoneSalle' => $sqlzonesalle, 'lstSqlNiveau' => $sqlniveau, 'lstSqlType' => $sqltypesalle, 'lstSqlEnseignement' => $sqlenseignement, 'lstSqlComposante' => $sqlcomposante, 'lstSqlTypeActivite' => $sqltypeactivite, 'msgmail' => $nomail, 'lstSqlGroupes' => $sqlgroupeenseignement, 'lstSqlSalles' => $sqlsalles, 'displayAll' => $displayAll, 'errorGroupe' => $errorGroupe, 'seancesSalles' => $seancesSalles, '$seancesGroupes' => $seancesGroupes, 'ressourcesProfs' => $ressourcesProfs));
                               
                         }
                         
@@ -309,6 +328,7 @@ class IndexController extends Controller
                                         $sqlsalles = $conn->fetchAll('SELECT DISTINCT codeSalle, nom FROM ressources_salles ORDER BY nom');
                                         $seancesSalles = $conn->fetchAll('SELECT codeSeance, codeRessource FROM seances_salles');
                                         $seancesGroupes = $conn->fetchAll('SELECT codeSeance, codeRessource FROM seances_groupes'); 
+                                        $ressourcesProfs = $conn->fetchALL('SELECT codeProf, nom, prenom FROM ressources_profs ORDER BY nom');
                                         $sqlemail = $conn->executeQuery('SELECT emailProf
                                                                                             FROM LOGIN_PROF
                                                                                             WHERE codeProf = ?', array($user));
@@ -323,7 +343,7 @@ class IndexController extends Controller
                                         $displayAll = 0;
 
                                          // Requêtes pour liste déroulante - formulaire Séance
-                                        $sqlenseignement = $conn->fetchAll('SELECT enseignements.codeEnseignement, enseignements.nom FROM enseignements, enseignements_profs WHERE enseignements.codeEnseignement = enseignements_profs.codeEnseignement');
+                                        $sqlenseignement = $conn->fetchAll('SELECT DISTINCT enseignements.codeEnseignement, enseignements.nom FROM enseignements, enseignements_profs, ressources_profs, login_prof WHERE enseignements.codeEnseignement = enseignements_profs.codeEnseignement AND login_prof.codeProf = ressources_profs.codeProf AND ressources_profs.codeProf = enseignements_profs.codeRessource AND login_prof.codeProf = ? ', array($user));
                                         return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event, 'lstSqlMatiere' => $sqlmatiere, 'lstSqlZoneSalle' => $sqlzonesalle, 'lstSqlNiveau' => $sqlniveau, 'lstSqlType' => $sqltypesalle, 'lstSqlEnseignement' => $sqlenseignement, 'lstSqlComposante' => $sqlcomposante, 'lstSqlTypeActivite' => $sqltypeactivite, 'msgmail' => $nomail, 'lstSqlGroupes' => $sqlgroupeenseignement, 'lstSqlSalles' => $sqlsalles, 'displayAll' => $displayAll, 'errorSalle' => $errorSalle, 'seancesSalles' => $seancesSalles, '$seancesGroupes' => $seancesGroupes));
 
                                     }
@@ -406,6 +426,56 @@ class IndexController extends Controller
 
                     return new RedirectResponse($this->generateUrl('calendar_home_page'));         
                 } 
+            }
+            
+            else{
+                                        
+                                        $errorEnseignement = 1;
+                                        $session = new Session();
+                                        $user = $session->get('user_id');
+
+                                        $conn = $this->get('database_connection');
+
+                                        //Requête pour permettre l'affichage des séances pour un prof connecté
+                                        $event = $conn->fetchAll('SELECT DISTINCT seances.codeSeance, seances.dateSeance, seances.heureSeance, seances.dureeSeance, seances.Commentaire, enseignements.nom 
+                                                                    FROM enseignements, seances, seances_profs, ressources_profs, login_prof 
+                                                                    WHERE enseignements.codeEnseignement = seances.codeEnseignement 
+                                                                    AND seances.codeSeance = seances_profs.codeSeance
+                                                                    AND enseignements.codeEnseignement = seances.codeEnseignement
+                                                                    AND ressources_profs.codeProf = seances_profs.codeRessource
+                                                                    AND login_prof.codeProf = ressources_profs.codeProf
+                                                                    AND login_prof.codeProf = ?
+                                                                    AND seances.deleted = 0', array($user)
+                                                                );
+
+                                        // Requêtes pour liste déroulante - formulaire Enseignement
+                                        $sqlmatiere = $conn->fetchAll('SELECT MATIERES.codeMatiere, MATIERES.nom FROM MATIERES ORDER BY MATIERES.nom');
+                                        $sqlzonesalle = $conn->fetchAll('SELECT ZONES_SALLES.codeZoneSalle, ZONES_SALLES.nom FROM ZONES_SALLES ORDER BY ZONES_SALLES.nom');
+                                        $sqlniveau = $conn->fetchAll('SELECT NIVEAUX.codeNiveau, NIVEAUX.nom FROM NIVEAUX ORDER BY NIVEAUX.nom');
+                                        $sqltypesalle = $conn->fetchAll('SELECT TYPES_SALLES.codeTypeSalle, TYPES_SALLES.nom FROM TYPES_SALLES ORDER BY TYPES_SALLES.nom');
+                                        $sqlcomposante = $conn->fetchAll('SELECT COMPOSANTES.codeComposante, COMPOSANTES.nom FROM COMPOSANTES');
+                                        $sqltypeactivite = $conn->fetchAll('SELECT TYPES_ACTIVITES.codeTypeActivite, TYPES_ACTIVITES.nom FROM TYPES_ACTIVITES ORDER BY TYPES_ACTIVITES.nom');
+                                        $sqlgroupeenseignement = $conn->fetchAll('SELECT codeGroupe, nom FROM ressources_groupes ORDER BY nom');
+                                        $sqlsalles = $conn->fetchAll('SELECT DISTINCT codeSalle, nom FROM ressources_salles ORDER BY nom');
+                                        $seancesSalles = $conn->fetchAll('SELECT codeSeance, codeRessource FROM seances_salles');
+                                        $seancesGroupes = $conn->fetchAll('SELECT codeSeance, codeRessource FROM seances_groupes'); 
+                                        $ressourcesProfs = $conn->fetchALL('SELECT codeProf, nom, prenom FROM ressources_profs ORDER BY nom');
+                                        $sqlemail = $conn->executeQuery('SELECT emailProf
+                                                                                            FROM LOGIN_PROF
+                                                                                            WHERE codeProf = ?', array($user));
+                                        $hasMail = $sqlemail->fetch();
+                                        if(empty($hasMail['emailProf'])){
+                                            $nomail = 1;
+                                        }
+                                        else{
+                                            $nomail = 0;
+                                        }
+
+                                        $displayAll = 0;
+
+                                         // Requêtes pour liste déroulante - formulaire Séance
+                                        $sqlenseignement = $conn->fetchAll('SELECT DISTINCT enseignements.codeEnseignement, enseignements.nom FROM enseignements, enseignements_profs, ressources_profs, login_prof WHERE enseignements.codeEnseignement = enseignements_profs.codeEnseignement AND login_prof.codeProf = ressources_profs.codeProf AND ressources_profs.codeProf = enseignements_profs.codeRessource AND login_prof.codeProf = ? ', array($user));
+                                        return $this->render('CalendarBundle:Default:index.html.twig', array('user' => $session->get('user'), 'events' => $event, 'lstSqlMatiere' => $sqlmatiere, 'lstSqlZoneSalle' => $sqlzonesalle, 'lstSqlNiveau' => $sqlniveau, 'lstSqlType' => $sqltypesalle, 'lstSqlEnseignement' => $sqlenseignement, 'lstSqlComposante' => $sqlcomposante, 'lstSqlTypeActivite' => $sqltypeactivite, 'msgmail' => $nomail, 'lstSqlGroupes' => $sqlgroupeenseignement, 'lstSqlSalles' => $sqlsalles, 'displayAll' => $displayAll, 'errorEnseignement' => $errorEnseignement, 'seancesSalles' => $seancesSalles, '$seancesGroupes' => $seancesGroupes, 'ressourcesProfs' => $ressourcesProfs));
             }
  
         }

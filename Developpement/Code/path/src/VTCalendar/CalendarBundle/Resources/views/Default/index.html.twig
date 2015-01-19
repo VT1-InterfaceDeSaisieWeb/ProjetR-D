@@ -14,8 +14,8 @@
  		<link rel='stylesheet' type='text/css' href='../css/bootstrap.css' />
  		<link rel='stylesheet' type='text/css' href='../css/colorpicker.css'>
                 <script type='text/javascript' src='../js/demo.js'></script>
- 		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js'></script>
- 		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js'></script>
+ 		<script type='text/javascript' src='../js/jquery.min.js'></script>
+ 		<script type='text/javascript' src='../js/jquery-ui.min.js'></script>
  		<script type='text/javascript' src='../js/jquery.weekcalendar.js'></script>
  		<script type='text/javascript' src='../js/verif.js'></script>
 		<!--<script type='text/javascript' src='../js/demo.js'></script>-->
@@ -327,6 +327,11 @@
                         alert("La séance n\'a pas été créé car la salle que vous souhaitiez est déjà prise à ce moment là.");
                     </script>
                     
+                {% elseif errorEnseignement is defined and errorEnseignement == 1 %}
+                    <script>
+                        alert("La séance n\'a pas été créé car l\'enseignement que vous souhaitiez ajouter n'a plus (assez) d'heures disponibles.");
+                    </script>
+                    
                 {% endif %}
                 
                 
@@ -567,6 +572,15 @@
                                                {% endfor %}
                                             </select>
                                             <span>Choisissez la matière associée</span>
+                                      </li>
+                                      <li>
+                                            <label for="prof">Professeur associé: </label>
+                                                 <select name="prof"><option disabled selected>-- Sélectionner un professeur -- </option>
+                                                      {% for prof in ressourcesProfs %}
+                                                          <option value="{{ prof.codeProf }}">{{ prof.nom}} {{ prof.prenom }}</option>
+                                                      {% endfor %}
+                                                 </select>
+                                            
                                       </li>
                                       <li>
                                             <label for=dureetotale>Durée de l'enseignement</label><br>

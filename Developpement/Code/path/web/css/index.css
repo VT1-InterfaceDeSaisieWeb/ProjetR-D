@@ -11,6 +11,7 @@
 a {
 color: #428bca!important;
 text-decoration: none!important;
+margin-left: -74px;
 }
 
 
@@ -105,6 +106,8 @@ nav ul {
 .nav li span {
 	display: block;
 	margin-bottom: 10px;
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
 }
 
 .nav a {
