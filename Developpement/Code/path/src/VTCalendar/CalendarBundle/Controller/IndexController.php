@@ -131,14 +131,13 @@ class IndexController extends Controller
     {
         if($request->getMethod() == "POST"){
             
-            $connection = mysql_connect( "localhost", "root", "root" ) ;
-            $db  = mysql_select_db( "VT" ) ;
+            $conn = $this->get('database_connection');
             
             $nomMatiere = $request->get('nom');
             $dateCreation = date("Y-m-d H:i:s");
             $codeProprietaire = 777;
-            $sql = "INSERT  INTO matieres (nom, dateCreation, codeProprietaire) VALUES ( '$nomMatiere', '$dateCreation', '$codeProprietaire')";
-            $requete = mysql_query($sql, $connection) or die( mysql_error() );
+            $conn->executeQuery('INSERT  INTO matieres (nom, dateCreation, codeProprietaire) VALUES ( ?, ?, ?)', array($nomMatiere, $dateCreation, $codeProprietaire));
+            
             
             return new RedirectResponse($this->generateUrl('calendar_home_page'));
             
@@ -151,8 +150,7 @@ class IndexController extends Controller
     {
         if($request->getMethod() == 'POST'){
             
-            $connection = mysql_connect( "localhost", "root", "root" );
-            $db  = mysql_select_db("VT");
+            
             
             $nom = $request->get('nom');
             $codeMatiere = $request->get('lstMatieres');
